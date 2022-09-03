@@ -13,7 +13,7 @@ const Navbar = () => {
   const [expand, setExpand] = useState<boolean>(false);
 
   return (
-    <nav className="max-w-full bg-[#FFB200] px-4 py-8 grid grid-cols-2 grid-rows-2 gap-y-7 justify-items-start h-full content-center lg:flex lg:justify-around lg:px-0 font-plus relative lg:items-center ">
+    <nav className="max-w-full bg-[#FFB200] px-4 py-8 grid grid-cols-2 grid-rows-1 gap-y-7 justify-items-end h-full content-center lg:flex lg:justify-around lg:px-0 font-plus relative lg:items-center ">
         <Head>
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
@@ -41,7 +41,7 @@ const Navbar = () => {
             <MdClose className="text-2xl text-white dark:text-black" />
           </a>
         )}
-        <Image src={logo} width={150} height={35} />
+        <Image src={logo} width={150} height={25} />
         {/* <h1 className="text-2xl font-semibold dark:text-skin-darkSecondary">
           NFTicket
         </h1> */}
