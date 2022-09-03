@@ -16,7 +16,7 @@ const Hero = () => {
                 want with the same price
               </p>
               <div>
-                <button className='border-full py-2 px-6 rounded-full border-2'>
+                <button className='border-full py-2 px-6 rounded-full border-2  hover:bg-[#800028]'>
                     How it works
                 </button>
               </div>
