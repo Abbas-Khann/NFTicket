@@ -4,9 +4,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultWallets,
   RainbowKitProvider,
-  darkTheme,
   lightTheme,
-  midnightTheme
 } from '@rainbow-me/rainbowkit';
 import {
   chain,
@@ -34,6 +32,7 @@ const wagmiClient = createClient({
   connectors,
   provider
 })
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
