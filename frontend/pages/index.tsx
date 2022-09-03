@@ -2,18 +2,18 @@ import type { NextPage } from 'next'
 import Hero from '../components/Hero'
 import Navbar from '../components/Navbar'
 import Countdown from '../components/Countdown';
-import Card from '../components/Card';
-import Groups from '../components/Groups';
 import CallGroups from '../components/CallGroups';
+import BuyTickets from '../components/BuyTickets';
 
 const Home: NextPage = () => {
 
   return(
-    <main className='bg-gray-900'>
+    <main>
       <Navbar />
       <Hero />
       <Countdown />
       <CallGroups />
+      <BuyTickets />
     </main>
   )
 }

@@ -3,7 +3,7 @@ import Groups from './Groups'
 
 const CallGroups = () => {
   return (
-    <div className='text-white text-4xl md:px-16 py-8'>
+    <div className='text-white text-4xl md:px-16 py-8 bg-gray-900'>
       <h1 className='px-5 text-[#FFB200]'>Groups</h1>
         <Groups />
     </div>
