@@ -10,7 +10,7 @@ const Footer = () => {
     <div className='bg-[#211E2C] text-white flex flex-col py-8'>
         <div>
           <Image src={logo} width={130} height={30} />
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing.</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing. </p>
             <br />
         </div>
         <div className='pr-4 flex items-end flex-col'>
