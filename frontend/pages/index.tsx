@@ -13,7 +13,7 @@ const Home: NextPage = () => {
       <main>
         <Navbar />
         <Hero />
-        <Countdown /> {/*Fix this - Hydration */}
+        {/* <Countdown /> Fix this - Hydration */}
         <CallGroups />
         <BuyTickets />
       </main>
