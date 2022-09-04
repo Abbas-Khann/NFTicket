@@ -31,16 +31,4 @@ const Card = ({
   );
 };
 
-// Getting the Images URL
-export async function getServerSideProps(ctx: any) {
-  // Fetch data from external API
-  //   const res = await fetch(`https://.../data`);
-  //   const data = await res.json();
-  console.log(ctx);
-
-  // Pass data to the page via props
-  //   return { props: { data } };
-  return;
-}
-
 export default Card;
