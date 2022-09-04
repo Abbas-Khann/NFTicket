@@ -32,7 +32,7 @@ const Groups = () => {
           ]}
         >
           <Carousel.Item>
-            <h1 className="text-center my-2 text-3xl">Group A</h1>
+            <h1 className="md:text-center my-2 text-3xl">Group A</h1>
             <Card
               countries={[
                 { name: "Qatar", code: "QA" },
@@ -43,7 +43,7 @@ const Groups = () => {
             />
           </Carousel.Item>
           <Carousel.Item>
-            <h1 className="text-center my-2 text-3xl">Group B</h1>
+            <h1 className="md:text-center my-2 text-3xl">Group B</h1>
             <Card
               countries={[
                 { name: "England", code: "GB" },
@@ -54,7 +54,7 @@ const Groups = () => {
             />
           </Carousel.Item>
           <Carousel.Item>
-            <h1 className="text-center my-2 text-3xl">Group C</h1>
+            <h1 className="md:text-center my-2 text-3xl">Group C</h1>
             <Card
               countries={[
                 { name: "Argentina", code: "AR" },
@@ -65,7 +65,7 @@ const Groups = () => {
             />
           </Carousel.Item>
           <Carousel.Item>
-            <h1 className="text-center my-2 text-3xl">Group D</h1>
+            <h1 className="md:text-center my-2 text-3xl">Group D</h1>
             <Card
               countries={[
                 { name: "France", code: "FR" },
@@ -76,7 +76,7 @@ const Groups = () => {
             />
           </Carousel.Item>
           <Carousel.Item>
-            <h1 className="text-center my-2 text-3xl">Group E</h1>
+            <h1 className="md:text-center my-2 text-3xl">Group E</h1>
             <Card
               countries={[
                 { name: "Spain", code: "ES" },
@@ -87,7 +87,7 @@ const Groups = () => {
             />
           </Carousel.Item>
           <Carousel.Item>
-            <h1 className="text-center my-2 text-3xl">Group F</h1>
+            <h1 className="md:text-center my-2 text-3xl">Group F</h1>
             <Card
               countries={[
                 { name: "Belgium", code: "BEL" },
@@ -98,7 +98,7 @@ const Groups = () => {
             />
           </Carousel.Item>
           <Carousel.Item>
-            <h1 className="text-center my-2 text-3xl">Group G</h1>
+            <h1 className="md:text-center my-2 text-3xl">Group G</h1>
             <Card
               countries={[
                 { name: "Brazil", code: "BR" },
@@ -109,7 +109,7 @@ const Groups = () => {
             />
           </Carousel.Item>
           <Carousel.Item>
-            <h1 className="text-center my-2 text-3xl">Group H</h1>
+            <h1 className="md:text-center my-2 text-3xl">Group H</h1>
             <Card
               countries={[
                 { name: "Portugal", code: "PT" },
