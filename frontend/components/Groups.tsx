@@ -15,7 +15,7 @@ const Groups = () => {
           responsiveLayout={[
             {
               breakpoint: 1500,
-              cols: 3,
+              cols: 4,
               rows: 1,
               gap: 10,
               loop: true,
@@ -32,55 +32,94 @@ const Groups = () => {
           ]}
         >
           <Carousel.Item>
+            <h1 className="md:text-center my-2 text-3xl">Group A</h1>
             <Card
               countries={[
-                { name: "Sri Lanka", code: "LKA" },
-                { name: "Andorra", code: "AND" },
-                { name: "Colombia", code: "COL" },
-                { name: "Canada", code: "CAN" },
+                { name: "Qatar", code: "QA" },
+                { name: "Ecuador", code: "EC" },
+                { name: "Senegal", code: "SN" },
+                { name: "Netherlands", code: "NL" },
               ]}
             />
           </Carousel.Item>
           <Carousel.Item>
+            <h1 className="md:text-center my-2 text-3xl">Group B</h1>
             <Card
               countries={[
-                { name: "China", code: "CHN" },
-                { name: "Guam", code: "GUM" },
-                { name: "Cyprus", code: "CYP" },
-                { name: "Egypt", code: "EGY" },
+                { name: "England", code: "GB" },
+                { name: "USA", code: "US" },
+                { name: "IR Iran", code: "IR" },
+                { name: "Wales", code: "GB" },
               ]}
             />
           </Carousel.Item>
           <Carousel.Item>
+            <h1 className="md:text-center my-2 text-3xl">Group C</h1>
             <Card
               countries={[
-                { name: "Finland", code: "FIN" },
-                { name: "Germany", code: "DEU" },
-                { name: "Bouvet", code: "BVT" },
-                { name: "Iceland", code: "ISL" },
+                { name: "Argentina", code: "AR" },
+                { name: "Saudi Arabia", code: "SA" },
+                { name: "Mexico", code: "MX" },
+                { name: "Poland", code: "PL" },
               ]}
             />
           </Carousel.Item>
           <Carousel.Item>
+            <h1 className="md:text-center my-2 text-3xl">Group D</h1>
             <Card
               countries={[
-                { name: "Kuwait", code: "KWT" },
-                { name: "Kenya", code: "KEN" },
-                { name: "Kiribati", code: "KIR" },
-                { name: "Italy", code: "ITA" },
+                { name: "France", code: "FR" },
+                { name: "Denmark", code: "DK" },
+                { name: "Tunisia", code: "TN" },
+                { name: "Australia", code: "AU" },
               ]}
             />
           </Carousel.Item>
           <Carousel.Item>
+            <h1 className="md:text-center my-2 text-3xl">Group E</h1>
             <Card
               countries={[
-                { name: "Macao", code: "MAC" },
-                { name: "Martinique", code: "MTQ" },
-                { name: "Mexico", code: "MEX" },
-                { name: "Myanmar", code: "MMR" },
+                { name: "Spain", code: "ES" },
+                { name: "Germany", code: "DE" },
+                { name: "Japan", code: "JPN" },
+                { name: "Costa Rica", code: "CRI" },
               ]}
             />
           </Carousel.Item>
+          <Carousel.Item>
+            <h1 className="md:text-center my-2 text-3xl">Group F</h1>
+            <Card
+              countries={[
+                { name: "Belgium", code: "BEL" },
+                { name: "Canada", code: "CN" },
+                { name: "Morocoo", code: "MA" },
+                { name: "Croatia", code: "HR" },
+              ]}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <h1 className="md:text-center my-2 text-3xl">Group G</h1>
+            <Card
+              countries={[
+                { name: "Brazil", code: "BR" },
+                { name: "Serbia", code: "RS" },
+                { name: "Switzerland", code: "CH" },
+                { name: "Cameroon", code: "CM" },
+              ]}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <h1 className="md:text-center my-2 text-3xl">Group H</h1>
+            <Card
+              countries={[
+                { name: "Portugal", code: "PT" },
+                { name: "Ghana", code: "GH" },
+                { name: "Uruguay", code: "UY" },
+                { name: "South Korea", code: "KR" },
+              ]}
+            />
+          </Carousel.Item>
+          
         </Carousel>
       </div>
     </section>

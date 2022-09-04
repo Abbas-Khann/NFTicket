@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Countdown from "../components/Countdown";
 import CallGroups from "../components/CallGroups";
 import BuyTickets from "../components/BuyTickets";
+import Footer from "../components/Footer";
 
 const Home: NextPage = () => {
   return (
@@ -16,6 +17,7 @@ const Home: NextPage = () => {
         <Countdown />
         <CallGroups />
         <BuyTickets />
+        <Footer />
       </main>
     </>
   );
