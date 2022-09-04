@@ -39,25 +39,27 @@ const countdown = () => {
   // const [year] = useState(new Date().getFullYear());
 
   useEffect(() => {
-    setTimeLeft(calculateTimeLeft());
-
-    // Add to the `timerComponents` array if there is a time remaining
-    Object.keys(timeLeft).forEach((interval) => {
-      if (timeLeft[interval] == 0) {
-        return;
-      }
-
-      timerComponents.push(
-        <span>
-          {timeLeft[interval]} {interval}{" "}
-        </span>
-      );
-    });
-
     // Get the current time every second
     setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
+  });
+
+  useEffect(() => {
+    setTimeLeft(calculateTimeLeft());
+  }, []);
+
+  // Add to the `timerComponents` array if there is a time remaining
+  Object.keys(timeLeft).forEach((interval) => {
+    if (timeLeft[interval] == 0) {
+      return;
+    }
+
+    timerComponents.push(
+      <span>
+        {timeLeft[interval]} {interval}{" "}
+      </span>
+    );
   });
 
   return (
