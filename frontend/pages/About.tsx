@@ -1,10 +1,12 @@
 import React from 'react'
+import Description from '../components/Description'
 import Navbar from '../components/Navbar'
 
 const About = () => {
   return (
-    <div className='bg-[#1F1F1F]'>
+    <div className='bg-black'>
         <Navbar />
+        <Description />
     </div>
   )
 }
