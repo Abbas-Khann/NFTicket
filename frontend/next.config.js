@@ -5,6 +5,11 @@ const nextConfig = {
   images: {
     domains: ["countryflagsapi.com"],
   },
+  experimental: {
+    images: {
+      unoptimized: true,
+    },
+  },
 };
 
 module.exports = nextConfig;
