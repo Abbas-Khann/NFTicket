@@ -14,15 +14,15 @@ const Groups = () => {
           autoplay={4000}
           responsiveLayout={[
             {
-              breakpoint: 1500,
-              cols: 4,
+              breakpoint: 1200,
+              cols: 3,
               rows: 1,
               gap: 10,
               loop: true,
               autoplay: 3000,
             },
             {
-              breakpoint: 1050,
+              breakpoint: 1000,
               cols: 2,
               rows: 1,
               gap: 10,
@@ -119,7 +119,6 @@ const Groups = () => {
               ]}
             />
           </Carousel.Item>
-          
         </Carousel>
       </div>
     </section>
