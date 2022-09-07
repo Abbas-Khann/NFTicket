@@ -1,12 +1,6 @@
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-//import "@openzeppelin/contracts/utils/Counters.sol";
 //Create a factory where one person can create a contract per world cup event
-//define the cost of the tickets(both home and away ticket)
-//People are not allowed to transfer/resell nft for a higher price
-//Set a max to the amount of home and away tickets that can be minted or make it limitless
-//What should events/subgraph be based on????
-
 
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.15;
@@ -19,16 +13,21 @@ error AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
 error CONTRACT_IS_PAUSED();
 //Seat Level One Home Will be token ids 1-100
 //Seat Level One Away will be token ids 101-200
-contract WorldCup is ERC721, Ownable {
+//Seat Level Two Home Will be token ids 201-300
+//Seat Level Two Away will be token ids 301-400
+contract Ticket is ERC721, Ownable {
+   event BuyTicket(address From, bool HomeOrAway, uint SeatLevel, uint TokenId, uint Amount);
+   event ResellTicket(address From, address To, bool HomeOrAway, uint SeatLevel, uint TokenId, uint Amount);
    mapping(uint => mapping(address => uint)) private homeTicketsOwned; //seatLevel => owner => amount minted
    mapping(uint => mapping(address => uint)) private awayTicketsOwned; //seatLevel => owner => amount minted
    mapping(bool => mapping(uint => uint)) private seatLevelCount; //HomeOrAway => Seat Level => amount minted
     constructor() ERC721("hello", "hello")  {
        
     }
-
    uint public currentLevelOneHomeId = 1;
    uint public currentLevelOneAwayId = 101;
+   uint public currentLevelTwoHomeId = 201;
+   uint public currentLevelTwoAwayId = 301;
    bool paused;
    uint constant public seatLevelTwoPrice = 4 ether;
    uint constant public seatLevelThreePrice = 3 ether;
@@ -46,14 +45,13 @@ contract WorldCup is ERC721, Ownable {
       }
       _;
    }
-
 //create a function based on seatLevel instead of just having one main seat function
    function buySeatLevelOne(bool _homeOrAway) onlyWhenNotPaused external payable {
     uint balance = balanceOf(msg.sender);
     if(balance == 2) {
       revert TICKETS_MINTED_REACHED_MAX();
     }
-     if(msg.value < 5 ether) {
+     if(msg.value != 5 ether) {
        revert INSUFFICIENT_FUNDS();
      }
 
@@ -64,8 +62,8 @@ contract WorldCup is ERC721, Ownable {
        homeTicketsOwned[1][msg.sender]++;
        seatLevelCount[true][1]++;
        _safeMint(msg.sender, currentLevelOneHomeId);
+        emit BuyTicket(msg.sender, true, 1, currentLevelOneHomeId, msg.value);
        currentLevelOneHomeId++;
-
      } else if(_homeOrAway == false) {
         if(currentLevelOneAwayId >= 200) {
          revert NO_AWAY_SEATS_AVAILABLE();
@@ -73,11 +71,12 @@ contract WorldCup is ERC721, Ownable {
          awayTicketsOwned[1][msg.sender]++;
          seatLevelCount[false][1]++;
         _safeMint(msg.sender, currentLevelOneAwayId);
+         emit BuyTicket(msg.sender, false, 1, currentLevelOneAwayId, msg.value);
         currentLevelOneAwayId++;
      }
    }
 
-   function receiveTicket(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
+   function receiveTicketLevelOne(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
       if(msg.value != 5 ether) {
          revert INSUFFICIENT_FUNDS();
       }
@@ -94,6 +93,7 @@ contract WorldCup is ERC721, Ownable {
        _safeTransfer(_from, msg.sender, _tokenId, "");
       (bool success, ) = _from.call{value: 5 ether}("");
       require(success, "Failed to send ether");
+      emit ResellTicket(_from, msg.sender, _homeOrAway, 1, _tokenId, msg.value);
    }
 
    function transferFrom(
@@ -136,9 +136,16 @@ contract WorldCup is ERC721, Ownable {
       return awayTicketsOwned[_seatLevel][msg.sender];
    }
 
+   function homeSeatLevelCount(uint _seatLevel) external view returns(uint) {
+      return seatLevelCount[true][_seatLevel];
+   }
 
-   function returnAllNFTsMinted() external view returns(uint) {
+   function awaySeatLevelCount(uint _seatLevel) external view returns(uint) {
+      return seatLevelCount[false][_seatLevel];
+   }
 
+   function getContractBalance() public view returns(uint) {
+      return address(this).balance;
    }
    
     function withdraw() public onlyOwner {
