@@ -65,7 +65,7 @@ const Navbar = () => {
             Profile
           </button>
         </Link>
-        <Link href="/">
+        <Link href="/Tickets">
           <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
             Tickets
           </button>
@@ -116,7 +116,7 @@ const Navbar = () => {
                 Profile
               </button>
             </Link>
-            <Link href="/">
+            <Link href="/Tickets">
               <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted">
                 Tickets
               </button>
