@@ -17,7 +17,7 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      rinkeby: "HTU49A9XFGYVXCE3UUBPB8TRX32AWDD11H"
+      rinkeby: process.env.ETHERSCAN_API_KEY !== undefined ? process.env.ETHERSCAN_API_KEY : ""
     },
   },
 };
