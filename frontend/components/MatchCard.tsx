@@ -4,11 +4,14 @@ import Image from 'next/image'
 const MatchCard = (props: any): JSX.Element => {
 
   const { countries }: { countries: { name: string; code: string  }[] } = props
+  const {date}: { date: {gameDate: string}[] } = props
 
   
   return (
     <div className='my-5 bg-[#E5E5E5] py-3 sm:py-10 sm:px-14 w-full sm:rounded-lg h-56 flex flex-col justify-evenly sm:w-2/3 md:m-w-lg lg:max-w-md'>
-      <p className='text-2xl text-center pt-5 pb-3'>21 November 2022</p>
+      {date.map((match, index) => {
+        return <div key={index} className='text-2xl text-center pt-5 pb-3'>{match.gameDate}</div>
+      })}
       {countries.map((country, index) => {
         return (
           <div

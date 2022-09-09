@@ -7,38 +7,80 @@ const Tickets = () => {
     <div className='bg-black min-h-screen w-full'>
         <Navbar />
         <div className='lg:px-36'>
-            <div className='flex items-center justify-center pt-16'>  
+            <div className='flex items-center justify-center pt-16 pb-20'>  
             <h1 className='text-3xl inline text-white sm:text-4xl border-b-2 pb-3'>Matches</h1>
             </div>
             <div className='flex flex-col items-center py-5 md:flex-row md:flex-wrap md:justify-evenly'>
             <MatchCard 
+            date={[ 
+              { gameDate: "21 November 2022" }
+            ]}
             countries={[
-              { name: "Qatar", code: "QT" },
+              { name: "Qatar", code: "QAT" },
               { name: "Ecuador", code: "EC" }
             ]}
             />
-            <MatchCard 
+            <MatchCard
+            date={[ 
+              { gameDate: "21 November 2022" }
+            ]} 
             countries={[
               { name: "England", code: "GB" },
-              { name: "Ecuador", code: "EC" }
+              { name: "IR Iran", code: "IRN" }
             ]}
             />
             <MatchCard 
+            date={[ 
+              { gameDate: "25 November 2022" }
+            ]}
             countries={[
               { name: "England", code: "GB" },
-              { name: "Ecuador", code: "EC" }
+              { name: "USA", code: "US" }
+            ]}
+            />
+            <MatchCard
+            date={[ 
+              { gameDate: "22 November 2022" }
+            ]} 
+            countries={[
+              { name: "France", code: "FR" },
+              { name: "Australia", code: "AUS" }
             ]}
             />
             <MatchCard 
+            date={[ 
+              { gameDate: "25 November 2022" }
+            ]}
             countries={[
-              { name: "England", code: "GB" },
-              { name: "Ecuador", code: "EC" }
+              { name: "Poland", code: "PL" },
+              { name: "Argentina", code: "ARG" }
             ]}
             />
-            <MatchCard 
+            <MatchCard
+            date={[ 
+              { gameDate: "27 November 2022" }
+            ]} 
             countries={[
-              { name: "England", code: "GB" },
-              { name: "Ecuador", code: "EC" }
+              { name: "Spain", code: "ESP" },
+              { name: "Germany", code: "DEU" }
+            ]}
+            />
+            <MatchCard
+            date={[ 
+              { gameDate: "30 November 2022" }
+            ]} 
+            countries={[
+              { name: "Australia", code: "AUS" },
+              { name: "Denmark", code: "DNK" }
+            ]}
+            />
+            <MatchCard
+            date={[ 
+              { gameDate: "28 November 2022" }
+            ]} 
+            countries={[
+              { name: "Portugal", code: "PT" },
+              { name: "Uruguay", code: "URY" }
             ]}
             />
             </div>
