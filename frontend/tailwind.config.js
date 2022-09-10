@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "tickets-img": "url('../assets/WC.png')",
+      },
       'animation': {
             'text':'text 5s ease infinite',
         },

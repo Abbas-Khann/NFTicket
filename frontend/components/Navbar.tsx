@@ -53,7 +53,7 @@ const Navbar = () => {
           </button>
         </Link>
         <Link
-          href="/"
+          href="/About"
           className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted"
         >
           <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
@@ -65,7 +65,7 @@ const Navbar = () => {
             Profile
           </button>
         </Link>
-        <Link href="/">
+        <Link href="/Tickets">
           <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
             Tickets
           </button>
@@ -106,7 +106,7 @@ const Navbar = () => {
                 Home
               </button>
             </Link>
-            <Link href="/">
+            <Link href="/About">
               <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted">
                 About
               </button>
@@ -116,7 +116,7 @@ const Navbar = () => {
                 Profile
               </button>
             </Link>
-            <Link href="/">
+            <Link href="/Tickets">
               <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted">
                 Tickets
               </button>

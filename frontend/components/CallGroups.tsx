@@ -1,13 +1,13 @@
-import React from 'react'
-import Groups from './Groups'
+import React from "react";
+import Groups from "./Groups";
 
 const CallGroups = () => {
   return (
-    <div className='text-white text-4xl md:px-16 py-8 bg-gray-900'>
-      <h1 className='px-5 text-[#FFB200]'>Groups</h1>
-        <Groups />
+    <div className="text-white text-4xl px-8 py-8 bg-gray-900">
+      <h1 className="ml-10 text-[#FFB200]">Groups</h1>
+      <Groups />
     </div>
-  )
-}
+  );
+};
 
-export default CallGroups
+export default CallGroups;
