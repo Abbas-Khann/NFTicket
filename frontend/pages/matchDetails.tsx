@@ -1,26 +1,22 @@
-import React from 'react'
-import GameDetails from '../components/GameDetails'
-import GameInfo from '../components/GameInfo'
-import Navbar from '../components/Navbar'
+import React from "react";
+import GameDetails from "../components/GameDetails";
+import GameInfo from "../components/GameInfo";
+import Navbar from "../components/Navbar";
 
 const matchDetails = () => {
   return (
-    <div>
-        <Navbar />
-        <GameDetails 
+    <div className="min-h-screen bg-[#282846]">
+      <Navbar />
+      <GameDetails
         countries={[
-            { name: "Qatar", code: "QAT" },
-            { name: "Ecuador", code: "EC" }
-          ]}
-        />
-        <GameInfo 
-        countries={[
-            { name: "Qatar", gameDate: "20:30" },
-            { name: "Ecuador", gameDate: "" }
-          ]}
-        />
-    </div>
-  )
-}
+          { name: "Qatar", code: "QAT" },
+          { name: "Ecuador", code: "EC" },
+        ]}
+      />
 
-export default matchDetails
+      <GameInfo countries={[{ name: "Qatar", gameDate: "20:30" }]} />
+    </div>
+  );
+};
+
+export default matchDetails;
