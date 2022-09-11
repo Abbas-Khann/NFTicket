@@ -1,8 +1,10 @@
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-//Create a factory where one person can create a contract per world cup event
-//Add reentrancy guard
-//Make modifiers that keep track of when the event starts
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "../interfaces/IResell.sol";
+import "../interfaces/IRefund.sol";
+import "../interfaces/IReceiveRefundedTicketFromContract.sol";
+
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.15;
 
@@ -13,14 +15,21 @@ error TICKETS_MINTED_REACHED_MAX();
 error HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
 error AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
 error CONTRACT_IS_PAUSED();
+error EVENT_HAS_ALREADY_STARTED();
+error EVENT_HASNT_STARTED_YET();
+error NOT_ALLOWED_TO_TRANSFER();
 
-contract Ticket is ERC721, Ownable {
+contract Ticket is ERC721, Ownable, ReentrancyGuard {
    event BuyTicket(address From, bool HomeOrAway, uint SeatLevel, uint TokenId, uint Amount);
-   mapping(uint => mapping(address => uint)) internal homeTicketsOwned; //seatLevel => owner => amount minted
-   mapping(uint => mapping(address => uint)) internal awayTicketsOwned; //seatLevel => owner => amount minted
-   mapping(bool => mapping(uint => uint)) internal seatLevelCount; //HomeOrAway => Seat Level => amount minted
-    constructor() ERC721("", "")  {
-       
+   mapping(uint => mapping(address => uint)) public homeTicketsOwned; //seatLevel => owner => amount minted
+   mapping(uint => mapping(address => uint)) public awayTicketsOwned; //seatLevel => owner => amount minted
+   mapping(bool => mapping(uint => uint)) public seatLevelCount; //HomeOrAway => Seat Level => amount minted
+   address public resellContract;
+   address public refundContract;
+   address public receiveRefundedTicketContract;
+   uint immutable timeUntilEventStarts;
+    constructor(uint _time) ERC721("", "")  {
+       timeUntilEventStarts = block.timestamp + _time;
     }
    bool paused;
    uint  currentLevelOneHomeId = 1;
@@ -58,8 +67,22 @@ contract Ticket is ERC721, Ownable {
      }
      _;
    }
-//create a function based on seatLevel instead of just having one main seat function
-   function buySeatLevelOne(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree public payable {
+
+   modifier onlyIfEventHasntStarted {
+      if(block.timestamp > timeUntilEventStarts) {
+        revert EVENT_HAS_ALREADY_STARTED();
+      }
+      _;
+   }
+
+   modifier onlyAfterEventHasStarted {
+       if(block.timestamp < timeUntilEventStarts) {
+        revert EVENT_HASNT_STARTED_YET();
+      }
+      _;
+   }
+
+   function buySeatLevelOne(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 5 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -84,7 +107,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function buySeatLevelTwo(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree public payable {
+    function buySeatLevelTwo(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 4 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -109,7 +132,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-   function buySeatLevelThree(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree public payable {
+   function buySeatLevelThree(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 3 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -134,7 +157,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-   function buySeatLevelFour(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree public payable {
+   function buySeatLevelFour(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 2 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -159,7 +182,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-   function buySeatLevelFive(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree public payable {
+   function buySeatLevelFive(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 1 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -184,7 +207,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function buySeatLevelSix(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree public payable {
+    function buySeatLevelSix(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 0.5 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -209,7 +232,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function buySeatLevelSeven(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree public payable {
+    function buySeatLevelSeven(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 0.25 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -234,7 +257,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-   function buySeatLevelEight(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree public payable {
+   function buySeatLevelEight(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 0.125 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -259,7 +282,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-   function buySeatLevelNine(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree public payable {
+   function buySeatLevelNine(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 0.1 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -284,7 +307,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function buySeatLevelTen(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree public payable {
+    function buySeatLevelTen(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 0.05 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -309,6 +332,8 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
+
+
    function transferFrom(
         address from,
         address to,
@@ -323,7 +348,7 @@ contract Ticket is ERC721, Ownable {
         address from,
         address to,
         uint256 tokenId
-    ) public virtual override onlyOwner {
+    ) public override onlyOwner {
         safeTransferFrom(from, to, tokenId, "");
     }
 
@@ -332,36 +357,131 @@ contract Ticket is ERC721, Ownable {
         address to,
         uint256 tokenId,
         bytes memory data
-    ) public override onlyOwner {
+    ) public override onlyOwner { 
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: caller is not token owner or approved");
         _safeTransfer(from, to, tokenId, data);
     }
+
+    function receiveRefundedTicket(address to, uint256 tokenId, bool homeOrAway, uint seatLevel) public {
+    bool value = IReceiveRefundedTicketFromContract(receiveRefundedTicketContract).areYouAllowedToReceiveTicketFromContract();
+    if(value == false) {
+      revert NOT_ALLOWED_TO_TRANSFER();
+    }
+        if(homeOrAway == true) {
+        homeTicketsOwned[seatLevel][to]++;
+     } else if(homeOrAway == false) {
+        awayTicketsOwned[seatLevel][to]++;
+     }
+     _transfer(address(this), to, tokenId);
+    }
+
+    function refundTicketToContract(
+        address from,
+        uint256 tokenId,
+        bool homeOrAway,
+        uint seatLevel
+      ) public {
+    bool value = IRefund(refundContract).areYouAllowedToRefund();
+    if(value == false) {
+      revert NOT_ALLOWED_TO_TRANSFER();
+    }
+      if(homeOrAway == true) {
+        homeTicketsOwned[seatLevel][from]--;
+     } else if(homeOrAway == false) {
+        awayTicketsOwned[seatLevel][from]--;
+     }
+      if(seatLevel == 1) {
+      (bool success, ) = payable(from).call{value: 5 ether}("");
+      require(success, "Failed to send ether");
+     } else if(seatLevel == 2) {
+      (bool success, ) = payable(from).call{value: 4 ether}("");
+      require(success, "Failed to send ether");
+     } else if(seatLevel == 3) {
+      (bool success, ) = payable(from).call{value: 3 ether}("");
+      require(success, "Failed to send ether");
+     } else if(seatLevel == 4) {
+       (bool success, ) = payable(from).call{value: 2 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 5) {
+        (bool success, ) = payable(from).call{value: 1 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 6) {
+        (bool success, ) = payable(from).call{value: 0.5 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 7) {
+        (bool success, ) = payable(from).call{value: 0.25 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 8) {
+        (bool success, ) = payable(from).call{value: 0.125 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 9) {
+       (bool success, ) = payable(from).call{value: 0.1 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 10) {
+        (bool success, ) = payable(from).call{value: 0.05 ether}("");
+        require(success, "Failed to send ether");
+     }
+     _transfer(from, address(this), tokenId);
+   }
+
+
+     function transferTicket(
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes memory data,
+        bool homeOrAway, 
+        uint seatLevel
+    ) public onlyWhenNotPaused {
+    bool value = IResell(resellContract).areYouAllowedToTransfer();
+    if(value == false) {
+      revert NOT_ALLOWED_TO_TRANSFER();
+    }
+      if(homeOrAway == true) {
+        homeTicketsOwned[seatLevel][from]--;
+        homeTicketsOwned[seatLevel][to]++;
+     } else if(homeOrAway == false) {
+        awayTicketsOwned[seatLevel][from]--;
+        awayTicketsOwned[seatLevel][to]++;
+     }
+        address approvedTo = getApproved(tokenId);
+        require(approvedTo == to, "ERC721: caller is not token owner or approved");
+        _safeTransfer(from, to, tokenId, data);
+    }
    
-   function setPause(bool _value) public onlyOwner {
+   function setPause(bool _value) external onlyOwner {
       paused = _value;
    }
+
+   function setResellContract(address _resellContract) external onlyOwner {
+     resellContract = _resellContract;
+   }
+
+    function setRefundContract(address _refundContract) external onlyOwner {
+      refundContract = _refundContract;
+   }
+
+    function setReceivedRefundTicketContract(address _receiveRefundedTicketContract) external onlyOwner {
+      receiveRefundedTicketContract = _receiveRefundedTicketContract;
+   }
    
-   function amountOfHomeTicketsMinted(uint _seatLevel) public view returns(uint) {
+   function amountOfHomeTicketsMinted(uint _seatLevel) external view returns(uint) {
       return homeTicketsOwned[_seatLevel][msg.sender];
    }
 
-   function amountOfAwayTicketsMinted(uint _seatLevel) public view returns(uint) {
+   function amountOfAwayTicketsMinted(uint _seatLevel) external view returns(uint) {
       return awayTicketsOwned[_seatLevel][msg.sender];
    }
 
-   function homeSeatLevelCount(uint _seatLevel) public view returns(uint) {
+   function homeSeatLevelCount(uint _seatLevel) external view returns(uint) {
       return seatLevelCount[true][_seatLevel];
    }
 
-   function awaySeatLevelCount(uint _seatLevel) public view returns(uint) {
+   function awaySeatLevelCount(uint _seatLevel) external view returns(uint) {
       return seatLevelCount[false][_seatLevel];
    }
-
-   function getContractBalance() public view returns(uint) {
-      return address(this).balance;
-   }
    
-    function withdraw() public onlyOwner {
+    function withdraw() external onlyOwner onlyAfterEventHasStarted {
         address _owner = owner();
         uint256 amount = address(this).balance;
         (bool sent, ) = _owner.call{value: amount}("");
