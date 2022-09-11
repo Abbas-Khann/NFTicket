@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+        philosopher: ["'Philosopher', sans-serif"],
+      },
       backgroundImage: {
         "tickets-img": "url('../assets/WC.png')",
       },

@@ -1,5 +1,6 @@
 import React,{ useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link';
 
 const MatchCard = (props: any): JSX.Element => {
 
@@ -34,7 +35,11 @@ const MatchCard = (props: any): JSX.Element => {
       })}
         <div className='text-sm flex justify-between text-[#606C7C] px-2 sm:pt-5 md:pb-3'>
             <p className='text-center'>Al Bayt Stadium, Al Khor</p>
-            <a href='#' target="_blank" className='text-center'>Match Details</a>
+            <Link href="/matchDetails">
+            <button>
+              Match Details
+            </button>
+            </Link>
         </div>
     </div>
   )

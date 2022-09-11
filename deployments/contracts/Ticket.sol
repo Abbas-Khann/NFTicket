@@ -1,6 +1,9 @@
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-//Create a factory where one person can create a contract per world cup event
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "../interfaces/IResell.sol";
+import "../interfaces/IRefund.sol";
+import "../interfaces/IReceiveRefundedTicketFromContract.sol";
 
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.15;
@@ -12,37 +15,43 @@ error TICKETS_MINTED_REACHED_MAX();
 error HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
 error AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
 error CONTRACT_IS_PAUSED();
+error EVENT_HAS_ALREADY_STARTED();
+error EVENT_HASNT_STARTED_YET();
+error NOT_ALLOWED_TO_TRANSFER();
 
-contract Ticket is ERC721, Ownable {
+contract Ticket is ERC721, Ownable, ReentrancyGuard {
    event BuyTicket(address From, bool HomeOrAway, uint SeatLevel, uint TokenId, uint Amount);
-   event ResellTicket(address From, address To, bool HomeOrAway, uint SeatLevel, uint TokenId, uint Amount);
-   mapping(uint => mapping(address => uint)) private homeTicketsOwned; //seatLevel => owner => amount minted
-   mapping(uint => mapping(address => uint)) private awayTicketsOwned; //seatLevel => owner => amount minted
-   mapping(bool => mapping(uint => uint)) private seatLevelCount; //HomeOrAway => Seat Level => amount minted
-    constructor() ERC721("", "")  {
-       
+   mapping(uint => mapping(address => uint)) public homeTicketsOwned; //seatLevel => owner => amount minted
+   mapping(uint => mapping(address => uint)) public awayTicketsOwned; //seatLevel => owner => amount minted
+   mapping(bool => mapping(uint => uint)) public seatLevelCount; //HomeOrAway => Seat Level => amount minted
+   address public resellContract;
+   address public refundContract;
+   address public receiveRefundedTicketContract;
+   uint immutable timeUntilEventStarts;
+    constructor(uint _time) ERC721("", "")  {
+       timeUntilEventStarts = block.timestamp + _time;
     }
    bool paused;
-   uint public currentLevelOneHomeId = 1;
-   uint public currentLevelOneAwayId = 101;
-   uint public currentLevelTwoHomeId = 201;
-   uint public currentLevelTwoAwayId = 301;
-   uint public currentLevelThreeHomeId = 401;
-   uint public currentLevelThreeAwayId = 501;
-   uint public currentLevelFourHomeId = 601;
-   uint public currentLevelFourAwayId = 701;
-   uint public currentLevelFiveHomeId = 801;
-   uint public currentLevelFiveAwayId = 901;
-   uint public currentLevelSixHomeId = 1001;
-   uint public currentLevelSixAwayId = 1101;
-   uint public currentLevelSevenHomeId = 1201;
-   uint public currentLevelSevenAwayId = 1301;
-   uint public currentLevelEightHomeId = 1401;
-   uint public currentLevelEightAwayId = 1501;
-   uint public currentLevelNineHomeId = 1601;
-   uint public currentLevelNineAwayId = 1701;
-   uint public currentLevelTenHomeId = 1801;
-   uint public currentLevelTenAwayId = 1901;
+   uint  currentLevelOneHomeId = 1;
+   uint  currentLevelOneAwayId = 101;
+   uint  currentLevelTwoHomeId = 201;
+   uint  currentLevelTwoAwayId = 301;
+   uint  currentLevelThreeHomeId = 401;
+   uint  currentLevelThreeAwayId = 501;
+   uint  currentLevelFourHomeId = 601;
+   uint  currentLevelFourAwayId = 701;
+   uint  currentLevelFiveHomeId = 801;
+   uint  currentLevelFiveAwayId = 901;
+   uint  currentLevelSixHomeId = 1001;
+   uint  currentLevelSixAwayId = 1101;
+   uint  currentLevelSevenHomeId = 1201;
+   uint  currentLevelSevenAwayId = 1301;
+   uint  currentLevelEightHomeId = 1401;
+   uint  currentLevelEightAwayId = 1501;
+   uint  currentLevelNineHomeId = 1601;
+   uint  currentLevelNineAwayId = 1701;
+   uint  currentLevelTenHomeId = 1801;
+   uint  currentLevelTenAwayId = 1901;
 
    modifier onlyWhenNotPaused {
       if(paused == true) {
@@ -58,8 +67,22 @@ contract Ticket is ERC721, Ownable {
      }
      _;
    }
-//create a function based on seatLevel instead of just having one main seat function
-   function buySeatLevelOne(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree external payable {
+
+   modifier onlyIfEventHasntStarted {
+      if(block.timestamp > timeUntilEventStarts) {
+        revert EVENT_HAS_ALREADY_STARTED();
+      }
+      _;
+   }
+
+   modifier onlyAfterEventHasStarted {
+       if(block.timestamp < timeUntilEventStarts) {
+        revert EVENT_HASNT_STARTED_YET();
+      }
+      _;
+   }
+
+   function buySeatLevelOne(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 5 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -84,27 +107,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-   function receiveTicketLevelOne(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
-      if(msg.value != 5 ether) {
-         revert INSUFFICIENT_FUNDS();
-      }
-     if(_homeOrAway == true) {
-       if(_tokenId < 1 || _tokenId > 100) {
-         revert HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     } else if(_homeOrAway == false) {
-       if(_tokenId < 101 || _tokenId > 200) {
-         revert AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     }
-      require(_isApprovedOrOwner(_msgSender(), _tokenId), "ERC721: caller is not token owner or approved");
-       _safeTransfer(_from, msg.sender, _tokenId, "");
-      (bool success, ) = _from.call{value: 5 ether}("");
-      require(success, "Failed to send ether");
-      emit ResellTicket(_from, msg.sender, _homeOrAway, 1, _tokenId, msg.value);
-   }
-
-    function buySeatLevelTwo(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree external payable {
+    function buySeatLevelTwo(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 4 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -129,27 +132,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function receiveTicketLevelTwo(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
-      if(msg.value != 4 ether) {
-         revert INSUFFICIENT_FUNDS();
-      }
-     if(_homeOrAway == true) {
-       if(_tokenId < 201 || _tokenId > 300) {
-         revert HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     } else if(_homeOrAway == false) {
-       if(_tokenId < 301 || _tokenId > 400) {
-         revert AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     }
-      require(_isApprovedOrOwner(_msgSender(), _tokenId), "ERC721: caller is not token owner or approved");
-       _safeTransfer(_from, msg.sender, _tokenId, "");
-      (bool success, ) = _from.call{value: 4 ether}("");
-      require(success, "Failed to send ether");
-      emit ResellTicket(_from, msg.sender, _homeOrAway, 2, _tokenId, msg.value);
-   }
-
-   function buySeatLevelThree(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree external payable {
+   function buySeatLevelThree(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 3 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -174,27 +157,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function receiveTicketLevelThree(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
-      if(msg.value != 3 ether) {
-         revert INSUFFICIENT_FUNDS();
-      }
-     if(_homeOrAway == true) {
-       if(_tokenId < 401 || _tokenId > 500) {
-         revert HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     } else if(_homeOrAway == false) {
-       if(_tokenId < 501 || _tokenId > 600) {
-         revert AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     }
-      require(_isApprovedOrOwner(_msgSender(), _tokenId), "ERC721: caller is not token owner or approved");
-       _safeTransfer(_from, msg.sender, _tokenId, "");
-      (bool success, ) = _from.call{value: 3 ether}("");
-      require(success, "Failed to send ether");
-      emit ResellTicket(_from, msg.sender, _homeOrAway, 3, _tokenId, msg.value);
-   }
-
-   function buySeatLevelFour(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree external payable {
+   function buySeatLevelFour(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 2 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -219,27 +182,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-     function receiveTicketLevelFour(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
-      if(msg.value != 2 ether) {
-         revert INSUFFICIENT_FUNDS();
-      }
-     if(_homeOrAway == true) {
-       if(_tokenId < 601 || _tokenId > 700) {
-         revert HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     } else if(_homeOrAway == false) {
-       if(_tokenId < 701 || _tokenId > 800) {
-         revert AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     }
-      require(_isApprovedOrOwner(_msgSender(), _tokenId), "ERC721: caller is not token owner or approved");
-       _safeTransfer(_from, msg.sender, _tokenId, "");
-      (bool success, ) = _from.call{value: 2 ether}("");
-      require(success, "Failed to send ether");
-      emit ResellTicket(_from, msg.sender, _homeOrAway, 4, _tokenId, msg.value);
-   }
-
-   function buySeatLevelFive(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree external payable {
+   function buySeatLevelFive(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 1 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -264,27 +207,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function receiveTicketLevelFive(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
-      if(msg.value != 1 ether) {
-         revert INSUFFICIENT_FUNDS();
-      }
-     if(_homeOrAway == true) {
-       if(_tokenId < 801 || _tokenId > 900) {
-         revert HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     } else if(_homeOrAway == false) {
-       if(_tokenId < 901 || _tokenId > 1000) {
-         revert AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     }
-      require(_isApprovedOrOwner(_msgSender(), _tokenId), "ERC721: caller is not token owner or approved");
-       _safeTransfer(_from, msg.sender, _tokenId, "");
-      (bool success, ) = _from.call{value: 1 ether}("");
-      require(success, "Failed to send ether");
-      emit ResellTicket(_from, msg.sender, _homeOrAway, 5, _tokenId, msg.value);
-   }
-
-    function buySeatLevelSix(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree external payable {
+    function buySeatLevelSix(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 0.5 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -309,27 +232,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function receiveTicketLevelSix(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
-      if(msg.value != 0.5 ether) {
-         revert INSUFFICIENT_FUNDS();
-      }
-     if(_homeOrAway == true) {
-       if(_tokenId < 1001 || _tokenId > 1100) {
-         revert HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     } else if(_homeOrAway == false) {
-       if(_tokenId < 1101 || _tokenId > 1200) {
-         revert AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     }
-      require(_isApprovedOrOwner(_msgSender(), _tokenId), "ERC721: caller is not token owner or approved");
-       _safeTransfer(_from, msg.sender, _tokenId, "");
-      (bool success, ) = _from.call{value: 0.5 ether}("");
-      require(success, "Failed to send ether");
-      emit ResellTicket(_from, msg.sender, _homeOrAway, 6, _tokenId, msg.value);
-   }
-
-    function buySeatLevelSeven(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree external payable {
+    function buySeatLevelSeven(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 0.25 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -354,27 +257,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function receiveTicketLevelSeven(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
-      if(msg.value != 0.25 ether) {
-         revert INSUFFICIENT_FUNDS();
-      }
-     if(_homeOrAway == true) {
-       if(_tokenId < 1201 || _tokenId > 1300) {
-         revert HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     } else if(_homeOrAway == false) {
-       if(_tokenId < 1301 || _tokenId > 1400) {
-         revert AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     }
-      require(_isApprovedOrOwner(_msgSender(), _tokenId), "ERC721: caller is not token owner or approved");
-       _safeTransfer(_from, msg.sender, _tokenId, "");
-      (bool success, ) = _from.call{value: 0.25 ether}("");
-      require(success, "Failed to send ether");
-      emit ResellTicket(_from, msg.sender, _homeOrAway, 7, _tokenId, msg.value);
-   }
-
-   function buySeatLevelEight(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree external payable {
+   function buySeatLevelEight(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 0.125 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -399,27 +282,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function receiveTicketLevelEight(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
-      if(msg.value != 0.125 ether) {
-         revert INSUFFICIENT_FUNDS();
-      }
-     if(_homeOrAway == true) {
-       if(_tokenId < 1401 || _tokenId > 1500) {
-         revert HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     } else if(_homeOrAway == false) {
-       if(_tokenId < 1501 || _tokenId > 1600) {
-         revert AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     }
-      require(_isApprovedOrOwner(_msgSender(), _tokenId), "ERC721: caller is not token owner or approved");
-       _safeTransfer(_from, msg.sender, _tokenId, "");
-      (bool success, ) = _from.call{value: 0.125 ether}("");
-      require(success, "Failed to send ether");
-      emit ResellTicket(_from, msg.sender, _homeOrAway, 8, _tokenId, msg.value);
-   }
-
-   function buySeatLevelNine(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree external payable {
+   function buySeatLevelNine(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 0.1 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -444,27 +307,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function receiveTicketLevelNine(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
-      if(msg.value != 0.1 ether) {
-         revert INSUFFICIENT_FUNDS();
-      }
-     if(_homeOrAway == true) {
-       if(_tokenId < 1601 || _tokenId > 1700) {
-         revert HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     } else if(_homeOrAway == false) {
-       if(_tokenId < 1701 || _tokenId > 1800) {
-         revert AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     }
-      require(_isApprovedOrOwner(_msgSender(), _tokenId), "ERC721: caller is not token owner or approved");
-       _safeTransfer(_from, msg.sender, _tokenId, "");
-      (bool success, ) = _from.call{value: 0.1 ether}("");
-      require(success, "Failed to send ether");
-      emit ResellTicket(_from, msg.sender, _homeOrAway, 9, _tokenId, msg.value);
-   }
-
-    function buySeatLevelTen(bool _homeOrAway) onlyWhenNotPaused balanceUnderThree external payable {
+    function buySeatLevelTen(bool _homeOrAway) onlyWhenNotPaused onlyIfEventHasntStarted nonReentrant balanceUnderThree external payable {
      if(msg.value != 0.05 ether) {
        revert INSUFFICIENT_FUNDS();
      }
@@ -489,25 +332,7 @@ contract Ticket is ERC721, Ownable {
      }
    }
 
-    function receiveTicketLevelTen(bool _homeOrAway, uint _tokenId, address _from) onlyWhenNotPaused external payable {
-      if(msg.value != 0.05 ether) {
-         revert INSUFFICIENT_FUNDS();
-      }
-     if(_homeOrAway == true) {
-       if(_tokenId < 1801 || _tokenId > 1900) {
-         revert HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     } else if(_homeOrAway == false) {
-       if(_tokenId < 1901 || _tokenId > 2000) {
-         revert AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS();
-       }
-     }
-      require(_isApprovedOrOwner(_msgSender(), _tokenId), "ERC721: caller is not token owner or approved");
-       _safeTransfer(_from, msg.sender, _tokenId, "");
-      (bool success, ) = _from.call{value: 0.05 ether}("");
-      require(success, "Failed to send ether");
-      emit ResellTicket(_from, msg.sender, _homeOrAway, 10, _tokenId, msg.value);
-   }
+
 
    function transferFrom(
         address from,
@@ -523,7 +348,7 @@ contract Ticket is ERC721, Ownable {
         address from,
         address to,
         uint256 tokenId
-    ) public virtual override onlyOwner {
+    ) public override onlyOwner {
         safeTransferFrom(from, to, tokenId, "");
     }
 
@@ -532,13 +357,112 @@ contract Ticket is ERC721, Ownable {
         address to,
         uint256 tokenId,
         bytes memory data
-    ) public override onlyOwner {
+    ) public override onlyOwner { 
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: caller is not token owner or approved");
+        _safeTransfer(from, to, tokenId, data);
+    }
+
+    function receiveRefundedTicket(address to, uint256 tokenId, bool homeOrAway, uint seatLevel) public {
+    bool value = IReceiveRefundedTicketFromContract(receiveRefundedTicketContract).areYouAllowedToReceiveTicketFromContract();
+    if(value == false) {
+      revert NOT_ALLOWED_TO_TRANSFER();
+    }
+        if(homeOrAway == true) {
+        homeTicketsOwned[seatLevel][to]++;
+     } else if(homeOrAway == false) {
+        awayTicketsOwned[seatLevel][to]++;
+     }
+     _transfer(address(this), to, tokenId);
+    }
+
+    function refundTicketToContract(
+        address from,
+        uint256 tokenId,
+        bool homeOrAway,
+        uint seatLevel
+      ) public {
+    bool value = IRefund(refundContract).areYouAllowedToRefund();
+    if(value == false) {
+      revert NOT_ALLOWED_TO_TRANSFER();
+    }
+      if(homeOrAway == true) {
+        homeTicketsOwned[seatLevel][from]--;
+     } else if(homeOrAway == false) {
+        awayTicketsOwned[seatLevel][from]--;
+     }
+      if(seatLevel == 1) {
+      (bool success, ) = payable(from).call{value: 5 ether}("");
+      require(success, "Failed to send ether");
+     } else if(seatLevel == 2) {
+      (bool success, ) = payable(from).call{value: 4 ether}("");
+      require(success, "Failed to send ether");
+     } else if(seatLevel == 3) {
+      (bool success, ) = payable(from).call{value: 3 ether}("");
+      require(success, "Failed to send ether");
+     } else if(seatLevel == 4) {
+       (bool success, ) = payable(from).call{value: 2 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 5) {
+        (bool success, ) = payable(from).call{value: 1 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 6) {
+        (bool success, ) = payable(from).call{value: 0.5 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 7) {
+        (bool success, ) = payable(from).call{value: 0.25 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 8) {
+        (bool success, ) = payable(from).call{value: 0.125 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 9) {
+       (bool success, ) = payable(from).call{value: 0.1 ether}("");
+        require(success, "Failed to send ether");
+     } else if(seatLevel == 10) {
+        (bool success, ) = payable(from).call{value: 0.05 ether}("");
+        require(success, "Failed to send ether");
+     }
+     _transfer(from, address(this), tokenId);
+   }
+
+
+     function transferTicket(
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes memory data,
+        bool homeOrAway, 
+        uint seatLevel
+    ) public onlyWhenNotPaused {
+    bool value = IResell(resellContract).areYouAllowedToTransfer();
+    if(value == false) {
+      revert NOT_ALLOWED_TO_TRANSFER();
+    }
+      if(homeOrAway == true) {
+        homeTicketsOwned[seatLevel][from]--;
+        homeTicketsOwned[seatLevel][to]++;
+     } else if(homeOrAway == false) {
+        awayTicketsOwned[seatLevel][from]--;
+        awayTicketsOwned[seatLevel][to]++;
+     }
+        address approvedTo = getApproved(tokenId);
+        require(approvedTo == to, "ERC721: caller is not token owner or approved");
         _safeTransfer(from, to, tokenId, data);
     }
    
    function setPause(bool _value) external onlyOwner {
       paused = _value;
+   }
+
+   function setResellContract(address _resellContract) external onlyOwner {
+     resellContract = _resellContract;
+   }
+
+    function setRefundContract(address _refundContract) external onlyOwner {
+      refundContract = _refundContract;
+   }
+
+    function setReceivedRefundTicketContract(address _receiveRefundedTicketContract) external onlyOwner {
+      receiveRefundedTicketContract = _receiveRefundedTicketContract;
    }
    
    function amountOfHomeTicketsMinted(uint _seatLevel) external view returns(uint) {
@@ -556,12 +480,8 @@ contract Ticket is ERC721, Ownable {
    function awaySeatLevelCount(uint _seatLevel) external view returns(uint) {
       return seatLevelCount[false][_seatLevel];
    }
-
-   function getContractBalance() public view returns(uint) {
-      return address(this).balance;
-   }
    
-    function withdraw() public onlyOwner {
+    function withdraw() external onlyOwner onlyAfterEventHasStarted {
         address _owner = owner();
         uint256 amount = address(this).balance;
         (bool sent, ) = _owner.call{value: amount}("");
