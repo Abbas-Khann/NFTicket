@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../components/Footer";
 import GameDetails from "../components/GameDetails";
 import GameInfo from "../components/GameInfo";
 import Navbar from "../components/Navbar";
@@ -15,6 +16,7 @@ const matchDetails = () => {
       />
 
       <GameInfo countries={[{ name: "Qatar", gameDate: "20:30" }]} />
+      <Footer />
     </div>
   );
 };
