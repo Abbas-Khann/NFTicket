@@ -20,7 +20,6 @@ const Footer = () => {
           <BsLinkedin className="text-3xl" />
           <AiOutlineTwitter className="text-3xl" />
           <SiDiscord className="text-3xl" />
-          <SiDiscord className="text-3xl" />
         </div>
       </div>
     </div>
