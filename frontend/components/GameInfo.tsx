@@ -22,7 +22,7 @@ const GameInfo = ({
                   {country.gameDate}
                 </div>
                 <h1 className="sm:text-3xl text-lg">{country.name}</h1>
-                <h1 className="sm:text-3xl text-lg">Lorem</h1>
+                <h1 className="sm:text-3xl text-lg">{country.name}</h1>
               </div>
               <div className="flex mx-auto justify-around py-16 relative ">
                 <div className="absolute top-1/2 transform -translate-y-1/2   font-medium">
