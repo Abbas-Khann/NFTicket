@@ -24,7 +24,7 @@ const Team = () => {
   };
 
   const YanukaData = {
-    name: "Yanuka",
+    name: "Yanuka Deneth",
     twitter: "https://twitter.com/yanukadeneth99",
     github: "https://github.com/yanukadeneth99",
     linkedln: "https://www.linkedin.com/in/yanukadeneth99",
