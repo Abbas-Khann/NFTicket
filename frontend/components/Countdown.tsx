@@ -1,13 +1,5 @@
-import React, { useState, useEffect } from "react";
-
-// TimeLeft Object
-interface TimeLeft {
-  [key: string]: number;
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
+import { useState, useEffect } from "react";
+import { TimeLeft } from "../interfaces/Countdown";
 
 const countdown = () => {
   // Returns a null or filled object with days,seconds,mins and hours if remaining time

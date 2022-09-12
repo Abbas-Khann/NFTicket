@@ -1,10 +1,8 @@
-import React from "react";
 import Image from "next/image";
-import Match from "../assets/Match.png";
+import Match from "../public/img/Match.png";
 import { FaEthereum } from "react-icons/fa";
-type Props = {};
 
-const TicketCard = (props: Props) => {
+const TicketCard = () => {
   return (
     <section className="h-[450px] max-w-[290px] bg-[#F5F5F5] px-3 md:px-6 pb-6 pt-8 my-16 mx-10 rounded-xl">
       <div className="max-w-[220px] mb-6 ">

@@ -1,20 +1,12 @@
-import React, { useState } from "react";
+import { MatchCardProps } from "../interfaces/MatchCard";
 import Image from "next/image";
 import Link from "next/link";
 
-const MatchCard = (props: any): JSX.Element => {
-  const { countries }: { countries: { name: string; code: string }[] } = props;
-  const { date }: { date: { gameDate: string }[] } = props;
-
+const MatchCard = ({ gameDate, countries }: MatchCardProps): JSX.Element => {
   return (
     <div className="my-5 bg-[#E5E5E5] py-3 sm:py-10 sm:px-14 w-full sm:rounded-lg h-56 flex flex-col justify-evenly sm:w-2/3 md:m-w-lg lg:max-w-md">
-      {date.map((match, index) => {
-        return (
-          <div key={index} className="text-2xl text-center pt-5 pb-3">
-            {match.gameDate}
-          </div>
-        );
-      })}
+      <div className="text-2xl text-center pt-5 pb-3">{gameDate}</div>
+
       {countries.map((country, index) => {
         return (
           <div
@@ -37,7 +29,9 @@ const MatchCard = (props: any): JSX.Element => {
       })}
       <div className="text-sm flex justify-between text-[#606C7C] px-2 sm:pt-5 md:pb-3">
         <p className="text-center">Al Bayt Stadium, Al Khor</p>
-        <Link href="/match">
+        <Link
+          href={`/match?country1=${countries[0].name}+${countries[0].code}&country2=${countries[1].name}+${countries[1].code}&gameDate=${gameDate}`}
+        >
           <button>Match Details</button>
         </Link>
       </div>

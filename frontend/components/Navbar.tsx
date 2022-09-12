@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Transition } from "@headlessui/react";
-import Image from "next/image";
-import { BiMenu } from "react-icons/bi";
-import { MdClose } from "react-icons/md";
-import logo from '../assets/[NFTICKET].png';
 import Link from "next/link";
 import Head from "next/head";
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useState } from "react";
+import { Transition } from "@headlessui/react";
+import { BiMenu } from "react-icons/bi";
+import { MdClose } from "react-icons/md";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Image from "next/image";
+import logo from "../public/img/[NFTICKET].png";
 
 const Navbar = () => {
   // --------- States here -------------
@@ -14,11 +14,12 @@ const Navbar = () => {
 
   return (
     <nav className="max-w-full bg-[#FFB200] px-4 py-8 grid grid-cols-2 grid-rows-1 gap-y-7 justify-items-end h-full content-center lg:flex lg:justify-around lg:px-0 font-plus relative lg:items-center ">
-        <Head>
+      <Head>
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+          @import
+          url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
         </style>
-        </Head>
+      </Head>
       <div className="flex justify-between w-full lg:w-96">
         {!expand ? (
           <a
@@ -72,7 +73,7 @@ const Navbar = () => {
         </Link>
       </ul>
       {/* ------------ Input component rendered here -------------- */}
-        <ConnectButton />
+      <ConnectButton />
       {/* --------------- Mobile and Tablets --------------- */}
 
       <button className="justify-self-end self-center mr-2 lg:hidden text-2xl">

@@ -1,10 +1,7 @@
 import Image from "next/image";
+import { CountriesProps } from "../interfaces/Countries";
 
-const Card = ({
-  countries,
-}: {
-  countries: { name: string; code: string }[];
-}): JSX.Element => {
+const Card = ({ countries }: { countries: CountriesProps[] }): JSX.Element => {
   return (
     <section className="bg-[#E5E5E5] py-3 px-2 rounded-lg max-w-xs h-72 flex flex-col justify-evenly text-black">
       {countries.map((country, index) => {

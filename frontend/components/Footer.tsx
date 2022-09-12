@@ -1,9 +1,8 @@
-import React from "react";
-import logo from "../assets/[NFTICKET] white.png";
 import Image from "next/image";
 import { BsLinkedin } from "react-icons/bs";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { SiDiscord } from "react-icons/si";
+import logo from "../public/img/[NFTICKET] white.png";
 
 const Footer = () => {
   return (

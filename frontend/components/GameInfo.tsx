@@ -1,12 +1,10 @@
-import React from "react";
-import Image from "next/image";
-import { match } from "assert";
 import TicketCard from "./TicketCard";
+import { GameInfoProps } from "../interfaces/Countries";
 
 const GameInfo = ({
   countries,
 }: {
-  countries: { name1: string; name2: string; gameDate: string }[];
+  countries: GameInfoProps[];
 }): JSX.Element => {
   return (
     <div className="bg-[#282846] text-white ">

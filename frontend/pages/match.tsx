@@ -1,6 +1,8 @@
 import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
+
+// Components
 import Footer from "../components/Footer";
 import GameDetails from "../components/GameDetails";
 import GameInfo from "../components/GameInfo";
