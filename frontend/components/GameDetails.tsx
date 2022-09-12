@@ -1,10 +1,10 @@
-import React from "react";
 import Image from "next/image";
+import { CountriesProps } from "../interfaces/Countries";
 
 const GameDetails = ({
   countries,
 }: {
-  countries: { name: string; code: string }[];
+  countries: CountriesProps[];
 }): JSX.Element => {
   return (
     <div className="bg-[#282846] max-w-full pt-8">

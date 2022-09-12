@@ -1,6 +1,3 @@
-import React from "react";
-import Image from "next/image";
-import WorldCup from "../assets/WC.png";
 import Link from "next/link";
 
 const BuyTickets = () => {
@@ -18,9 +15,9 @@ const BuyTickets = () => {
           manner
         </p>
         <Link href="/Tickets">
-        <button className="bg-white py-1 sm:py-3 px-5 rounded-full hover:bg-gray-300 text-black text-lg">
-          Purchase
-        </button>
+          <button className="bg-white py-1 sm:py-3 px-5 rounded-full hover:bg-gray-300 text-black text-lg">
+            Purchase
+          </button>
         </Link>
       </div>
     </div>

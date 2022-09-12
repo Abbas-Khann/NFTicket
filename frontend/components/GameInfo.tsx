@@ -1,12 +1,10 @@
-import React from "react";
-import Image from "next/image";
-import { match } from "assert";
 import TicketCard from "./TicketCard";
+import { GameInfoProps } from "../interfaces/Countries";
 
 const GameInfo = ({
   countries,
 }: {
-  countries: { name: string; gameDate: string }[];
+  countries: GameInfoProps[];
 }): JSX.Element => {
   return (
     <div className="bg-[#282846] text-white ">
@@ -21,8 +19,8 @@ const GameInfo = ({
                 <div className="absolute top-1/2 transform -translate-y-1/2  sm:text-3xl text-lg font-medium ">
                   {country.gameDate}
                 </div>
-                <h1 className="sm:text-3xl text-lg">{country.name}</h1>
-                <h1 className="sm:text-3xl text-lg">{country.name}</h1>
+                <h1 className="sm:text-3xl text-lg">{country.name1}</h1>
+                <h1 className="sm:text-3xl text-lg">{country.name2}</h1>
               </div>
               <div className="flex mx-auto justify-around py-16 relative ">
                 <div className="absolute top-1/2 transform -translate-y-1/2   font-medium">
