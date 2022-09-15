@@ -1,4 +1,4 @@
-import  "../interfaces/ITicket.sol";
+import  "./interfaces/ITicket.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.15;

@@ -10,27 +10,27 @@ const RINKEBY_PRIVATE_KEY = process.env.RINKEBY_PRIVATE_KEY;
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.15",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 5,
-      },
-    },
-  },
-  networks: {
-    rinkeby: {
-      url: ALCHEMY_API_KEY_URL,
-      accounts: [RINKEBY_PRIVATE_KEY !== undefined ? RINKEBY_PRIVATE_KEY : ""],
-    },
-  },
+  //   settings: {
+  //     optimizer: {
+  //       enabled: true,
+  //       runs: 5,
+  //     },
+  //   },
+  // },
+  // networks: {
+  //   rinkeby: {
+  //     url: ALCHEMY_API_KEY_URL,
+  //     accounts: [RINKEBY_PRIVATE_KEY !== undefined ? RINKEBY_PRIVATE_KEY : ""],
+  //   },
+  // },
 
-  etherscan: {
-    apiKey: {
-      rinkeby:
-        process.env.ETHERSCAN_API_KEY !== undefined
-          ? process.env.ETHERSCAN_API_KEY
-          : "",
-    },
+  // etherscan: {
+  //   apiKey: {
+  //     rinkeby:
+  //       process.env.ETHERSCAN_API_KEY !== undefined
+  //         ? process.env.ETHERSCAN_API_KEY
+  //         : "",
+  //   },
   },
 };
 
