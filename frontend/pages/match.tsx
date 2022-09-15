@@ -38,7 +38,7 @@ const match: NextPage = () => {
         />
 
         <GameInfo
-          countries={[{ name1: c1Array[0], name2: c2Array[0], gameDate }]}
+          country={{ name1: c1Array[0], name2: c2Array[0], gameDate }}
         />
         <Footer />
       </div>
