@@ -64,15 +64,15 @@ contract Ticket is ITicket, ERC721, Ownable, ReentrancyGuard, Pausable {
         timeUntilEventStarts = block.timestamp + _time;
         seatsAvailable = 10;
         seatPrices[1] = 5 ether;
-        seatPrices[2] = 5 ether;
-        seatPrices[3] = 5 ether;
-        seatPrices[4] = 5 ether;
-        seatPrices[5] = 5 ether;
-        seatPrices[6] = 5 ether;
-        seatPrices[7] = 5 ether;
-        seatPrices[8] = 5 ether;
-        seatPrices[9] = 5 ether;
-        seatPrices[10] = 5 ether;
+        seatPrices[2] = 4 ether;
+        seatPrices[3] = 3 ether;
+        seatPrices[4] = 2 ether;
+        seatPrices[5] = 1 ether;
+        seatPrices[6] = 0.8 ether;
+        seatPrices[7] = 0.6 ether;
+        seatPrices[8] = 0.4 ether;
+        seatPrices[9] = 0.2 ether;
+        seatPrices[10] = 0.1 ether;
 
         // Set the Ticket IDs of Home and Away
         uint _hprice = 1;
@@ -135,8 +135,11 @@ contract Ticket is ITicket, ERC721, Ownable, ReentrancyGuard, Pausable {
 
         if (_type == side.HOME) {
             // All tokens are over
-            if (ownerOf(currentHome[seat]) != address(0))
-                revert NO_HOME_SEATS_AVAILABLE();
+            if (
+                currentHome[seat + 1] != 0
+                    ? currentHome[seat] == currentHome[seat + 1]
+                    : currentHome[seat] == (currentHome[seat - 1] + 200)
+            ) revert NO_HOME_SEATS_AVAILABLE();
 
             homeTicketsOwned[seat][msg.sender]++;
             seatLevelCount[side.HOME][seat]++;
@@ -151,8 +154,12 @@ contract Ticket is ITicket, ERC721, Ownable, ReentrancyGuard, Pausable {
             currentHome[seat]++;
         } else {
             // All tokens are over
-            if (ownerOf(currentAway[seat]) != address(0))
-                revert NO_HOME_SEATS_AVAILABLE();
+            if (
+                currentAway[seat + 1] != 0
+                    ? currentAway[seat] == currentAway[seat + 1]
+                    : currentAway[seat] == (currentAway[seat - 1] + 200)
+            ) revert NO_AWAY_SEATS_AVAILABLE();
+
             awayTicketsOwned[seat][msg.sender]++;
             seatLevelCount[side.AWAY][seat]++;
             _mint(msg.sender, currentAway[seat]);
