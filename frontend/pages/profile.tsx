@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import TicketCard from '../components/TicketCard';
-import Footer from '../components/Footer';
 
 const profile = () => {
   return (
