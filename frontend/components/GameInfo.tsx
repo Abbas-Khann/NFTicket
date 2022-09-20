@@ -7,7 +7,7 @@ const GameInfo = ({
   countries: GameInfoProps[];
 }): JSX.Element => {
   return (
-    <div className="bg-[#282846] text-white ">
+    <div className="bg-black text-white ">
       <div className="">
         {countries.map((country, index) => {
           return (
