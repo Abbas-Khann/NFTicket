@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Match from "../public/img/Match.png";
+import Match from "../public/img/blanknft.png";
 import { FaEthereum } from "react-icons/fa";
 
 const TicketCard = ({
@@ -12,11 +12,11 @@ const TicketCard = ({
   return (
     <section className="h-[450px] max-w-[290px] bg-[#F5F5F5] px-3 md:px-6 pb-6 pt-8 my-16 mx-10 rounded-xl">
       <div className="max-w-[220px] mb-6 relative">
-        <div className="z-10 w-full h-full absolute flex flex-col justify-center items-center">
+        <div className="z-10 w-full h-full absolute flex flex-col justify-center items-center space-y-10">
           <h1 className="text-gray-200 z-10 text-2xl font-medium">
             {country1}
           </h1>
-          <h1 className="text-gray-200 z-10 text-xl">VS</h1>
+          {/* <h1 className="text-gray-200 z-10 text-xl">VS</h1> */}
           <h1 className="text-gray-200 z-10 text-2xl font-medium">
             {country2}
           </h1>
