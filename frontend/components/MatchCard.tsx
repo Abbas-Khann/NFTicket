@@ -10,8 +10,8 @@ const MatchCard = ({ gameDate, countries }: MatchCardProps): JSX.Element => {
       {countries.map((country, index) => {
         return (
           <div
-            key={index}
-            className="flex flex-row items-end justify-start px-8 py-2 rounded-xl bg-[#ffffff] my-1"
+          key={index}
+          className="flex flex-row items-end justify-start px-8 py-2 rounded-xl bg-[#ffffff] my-1"
           >
             {/* <div className="basis-1/2 w-full flex justify-evenly px-6 py-1"> */}
             <div className="text-xs relative w-10 h-8 flex flex-col items-end justify-start py-3">
@@ -20,7 +20,7 @@ const MatchCard = ({ gameDate, countries }: MatchCardProps): JSX.Element => {
                 alt="Flag"
                 layout="fill"
                 priority
-              />
+                />
             </div>
             <h1 className="text-lg py-1 ml-8">{country.name}</h1>
             {/* </div> */}
@@ -31,8 +31,8 @@ const MatchCard = ({ gameDate, countries }: MatchCardProps): JSX.Element => {
         <p className="text-center">Al Bayt Stadium, Al Khor</p>
         <Link
           href={`/match?country1=${countries[0].name}+${countries[0].code}&country2=${countries[1].name}+${countries[1].code}&gameDate=${gameDate}`}
-        >
-          <button>Match Details</button>
+          >
+          <button className="animate-bounce text-black">Match Details</button>
         </Link>
       </div>
     </div>

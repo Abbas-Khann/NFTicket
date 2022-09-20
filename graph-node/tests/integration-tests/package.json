@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "workspaces": [
+    "api-version-v0-0-4",
+    "data-source-revert",
+    "fatal-error",
+    "ganache-reverts",
+    "host-exports",
+    "non-fatal-errors",
+    "overloaded-contract-functions",
+    "poi-for-failed-subgraph",
+    "remove-then-update",
+    "typename",
+    "value-roundtrip",
+    "file-data-sources"
+  ]
+}

@@ -1,0 +1,8 @@
+type Ticket @entity {
+  id: ID!
+  From: Bytes!
+  HomeOrAway: Boolean!
+  SeatLevel: BigInt!
+  TokenId: BigInt!
+  Amount: BigInt!
+}

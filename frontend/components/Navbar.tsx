@@ -61,7 +61,7 @@ const Navbar = () => {
             About
           </button>
         </Link>
-        <Link href="/">
+        <Link href="/profile">
           <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
             Profile
           </button>
@@ -112,7 +112,7 @@ const Navbar = () => {
                 About
               </button>
             </Link>
-            <Link href="/">
+            <Link href="/profile">
               <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted">
                 Profile
               </button>
