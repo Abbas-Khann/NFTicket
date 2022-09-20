@@ -1,0 +1,19 @@
+[package]
+name = "graph-chain-cosmos"
+version = "0.27.0"
+edition = "2018"
+
+[build-dependencies]
+tonic-build = { version = "0.7.1", features = ["prost"] }
+graph-chain-common = { path = "../common" }
+
+[dependencies]
+graph = { path = "../../graph" }
+prost = "0.10.1"
+prost-types = "0.10.1"
+serde = "1.0"
+anyhow = "1.0"
+semver = "1.0.3"
+
+graph-runtime-wasm = { path = "../../runtime/wasm" }
+graph-runtime-derive = { path = "../../runtime/derive" }

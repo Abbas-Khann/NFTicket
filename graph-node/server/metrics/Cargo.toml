@@ -1,0 +1,11 @@
+[package]
+name = "graph-server-metrics"
+version = "0.27.0"
+edition = "2021"
+
+[dependencies]
+graph = { path = "../../graph" }
+http = "0.2"
+hyper = { version = "0.14", features = ["server"] }
+lazy_static = "1.2.0"
+serde = "1.0"

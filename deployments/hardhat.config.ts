@@ -1,11 +1,12 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import "@nomiclabs/hardhat-etherscan";
 require("dotenv").config({ path: ".env" });
 
 
 const ALCHEMY_API_KEY_URL = process.env.ALCHEMY_API_KEY_URL;
 
-const RINKEBY_PRIVATE_KEY = process.env.RINKEBY_PRIVATE_KEY;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -18,19 +19,21 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
-    rinkeby: {
+    mumbai: {
       url: ALCHEMY_API_KEY_URL,
-      accounts: [RINKEBY_PRIVATE_KEY !== undefined ? RINKEBY_PRIVATE_KEY : ""],
+      accounts: [PRIVATE_KEY !== undefined ? PRIVATE_KEY : ""],
+    },
+    skale: {
+      url: "https://eth-online.skalenodes.com/v1/hackathon-content-live-vega",
+      accounts: [PRIVATE_KEY !== undefined ? PRIVATE_KEY : ""],
     },
   },
 
   etherscan: {
-    apiKey: {
-      rinkeby:
-        process.env.ETHERSCAN_API_KEY !== undefined
-          ? process.env.ETHERSCAN_API_KEY
-          : "",
-    },
+    apiKey:
+      process.env.ETHERSCAN_API_KEY !== undefined
+        ? process.env.ETHERSCAN_API_KEY
+        : "",
   },
 };
 

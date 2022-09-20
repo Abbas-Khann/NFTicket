@@ -21,7 +21,7 @@ describe("Ticket", async function() {
 
 
 
-    xit("Should be able to buy ticket from first seat level", async function () {
+    it("Should be able to buy ticket from first seat level", async function () {
       const [owner, addr1, addr2] = await ethers.getSigners();
       const Ticket = await ethers.getContractFactory("Ticket");
       const ticket = await Ticket.connect(owner).deploy(100000000000000);
@@ -62,7 +62,7 @@ describe("Ticket", async function() {
        expect(theOwner).to.equal(ticket.address);
      });
       
-     it("Should be able to buy ticket from first seat level", async function () {
+     xit("Should be able to buy ticket from first seat level", async function () {
        const [owner, addr1, addr2] = await ethers.getSigners();
        const Ticket = await ethers.getContractFactory("Ticket");
        const ticket = await Ticket.connect(owner).deploy(100000000000000);

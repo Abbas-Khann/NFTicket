@@ -17,7 +17,6 @@ pragma solidity ^0.8.15;
 
 contract Resell is Ownable, ReentrancyGuard {
  event ResellTicket(address From, address To, bool HomeOrAway, uint SeatLevel, uint TokenId, uint Amount);
- mapping(address => bool) public allowedToTransfer;
  address public ticket;
  bool paused;
  uint status = 0;
