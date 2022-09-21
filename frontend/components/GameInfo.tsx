@@ -3,7 +3,7 @@ import { GameInfoProps } from "../interfaces/Countries";
 
 const GameInfo = ({ country }: { country: GameInfoProps }): JSX.Element => {
   return (
-    <div className="bg-[#282846] text-white ">
+    <div className="bg-black text-white ">
       <div className="">
         <div className="text-black bg-[#f5f5f5] rounded-b-xl sm:w-10/12 w-11/12 mx-auto ">
           <div className="flex mx-auto justify-around py-8 relative  border-b-2">
