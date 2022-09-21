@@ -1,0 +1,8 @@
+type ReceiveRefund @entity {
+  id: ID!
+  To: Bytes!
+  HomeOrAway: Boolean!
+  SeatLevel: BigInt!
+  TokenId: BigInt!
+  Amount: BigInt!
+}

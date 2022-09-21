@@ -47,7 +47,7 @@ const Navbar = () => {
           NFTicket
         </h1> */}
       </div>
-      <ul className="hidden lg:flex justify-evenly items-center basis-2/5 text-lg ml-4">
+      <ul className="hidden lg:flex justify-between items-center basis-2/5 text-lg">
         <Link href="/">
           <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
             Home
@@ -69,6 +69,16 @@ const Navbar = () => {
         <Link href="/Tickets">
           <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
             Tickets
+          </button>
+        </Link>
+        <Link href="/Activity">
+          <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
+            Activity
+          </button>
+        </Link>
+        <Link href="/Resell">
+          <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
+            Resell
           </button>
         </Link>
       </ul>
@@ -122,6 +132,16 @@ const Navbar = () => {
                 Tickets
               </button>
             </Link>
+              <Link href="/Activity">
+            <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
+              Activity
+            </button>
+          </Link>
+          <Link href="/Resell">
+            <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
+              Resell
+            </button>
+          </Link>
           </ul>
         </div>
       </Transition>

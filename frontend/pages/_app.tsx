@@ -6,7 +6,13 @@ import {
   RainbowKitProvider,
   lightTheme,
 } from "@rainbow-me/rainbowkit";
-import { Chain, chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import {
+  Chain,
+  chain,
+  configureChains,
+  createClient,
+  WagmiConfig,
+} from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -62,20 +68,20 @@ const wagmiClient = createClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-      <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider
-          chains={chains}
-          modalSize="compact"
-          theme={lightTheme({
-            accentColor: "whitesmoke",
-            accentColorForeground: "black",
-            borderRadius: "small",
-            fontStack: "rounded",
-          })}
-        >
-          <Component {...pageProps} />
-        </RainbowKitProvider>
-      </WagmiConfig>
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider
+        chains={chains}
+        modalSize="compact"
+        theme={lightTheme({
+          accentColor: "whitesmoke",
+          accentColorForeground: "black",
+          borderRadius: "small",
+          fontStack: "rounded",
+        })}
+      >
+        <Component {...pageProps} />
+      </RainbowKitProvider>
+    </WagmiConfig>
   );
 }
 

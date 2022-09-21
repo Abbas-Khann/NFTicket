@@ -10,27 +10,11 @@ import {
   useClient,
 } from "wagmi";
 import { buySeatLevelTen, buySeatLevelOne } from "../contractInteractions/Ticket";
-import { FETCH_TICKET, ticketQuery, FETCH_RESELL, resellQuery } from "../fetchSubgraph/subgraphs";
-
-  async function fetchFromGame() {
-    const ticketArray = await ticketQuery(FETCH_TICKET());
-   console.log(ticketArray.tickets)
-  }
-
-  async function fetchFromResell() {
-    const resellArray = await resellQuery(FETCH_RESELL());
-    console.log(resellArray.resells);
-  }
-
 
  
 
 const Hero = () => {
   const {data: signer} = useSigner();
-
-  useEffect(() => {
-    fetchFromGame()
-  });
 
   return (
     <section className="px-2 py-20 bg-gradient-to-r from-[#9B021EDE] via-[#800028] to-[#3B0113F7] text-white">

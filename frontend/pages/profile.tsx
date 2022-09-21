@@ -12,8 +12,8 @@ const profile = () => {
         <Navbar />
         <div className='text-white flex justify-around flex-wrap gap-y-20 gap-x-14'>
         {ticketPurchased ? <div>
-          <TicketCard />
-          <TicketCard />
+          {/* <TicketCard />
+          <TicketCard /> */}
         </div> : (
         <div className='pt-32'>
         <Image src={empty} height={300} width={250} />
