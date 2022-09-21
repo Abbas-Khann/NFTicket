@@ -76,7 +76,7 @@ const Navbar = () => {
             Activity
           </button>
         </Link>
-        <Link href="/Tickets">
+        <Link href="/Resell">
           <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
             Resell
           </button>
@@ -137,7 +137,7 @@ const Navbar = () => {
               Activity
             </button>
           </Link>
-          <Link href="/Tickets">
+          <Link href="/Resell">
             <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
               Resell
             </button>
