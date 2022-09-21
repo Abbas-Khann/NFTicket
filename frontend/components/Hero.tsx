@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import heroImage from "../public/img/hero.png";
 
 const Hero = () => {
@@ -15,9 +16,11 @@ const Hero = () => {
             Ticket NFT legally and re-sell if you want with the same price
           </p>
           <div>
+            <Link href="/Usage">
             <button className="border-full py-2 px-6 rounded-full border-2  hover:bg-[#800028]">
               How it works
             </button>
+            </Link>
           </div>
         </div>
         <div className="w-10/12 md:w-1/3 mx-auto md:mx-0 my-8 order-2 ">
