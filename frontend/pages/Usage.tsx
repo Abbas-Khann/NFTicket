@@ -62,7 +62,7 @@ const Usage = () => {
                 </div>
             </div>
             <div className='flex flex-col items-center py-24'>
-            <iframe width="760" height="455" src="https://www.youtube.com/embed/fs5Xp1P8Gck" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="760" height="455" src="https://www.youtube.com/embed/fs5Xp1P8Gck" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
             </div>
             <Footer />
         </div>
