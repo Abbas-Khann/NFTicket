@@ -8,7 +8,7 @@ const Usage = () => {
   return (
     <div>
         <Navbar />
-        <div className='bg-black min-h-screen text-white'>
+        <div className='bg-[#07031A] min-h-screen text-white'>
             <h1 className='text-4xl md:text-5xl text-center py-14 md:py-20'>How To Use?</h1>
                 <h1 className='text-4xl text-center py-10'>Step One</h1>
             <div className='flex sm:px-24 md:px-32 lg:px-36'>
