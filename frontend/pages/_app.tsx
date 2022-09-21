@@ -9,6 +9,7 @@ import {
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import { SnackbarProvider } from "notistack";
 
 const { chains, provider } = configureChains(
   [chain.goerli],
@@ -28,20 +29,22 @@ const wagmiClient = createClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider
-        chains={chains}
-        modalSize="compact"
-        theme={lightTheme({
-          accentColor: "whitesmoke",
-          accentColorForeground: "black",
-          borderRadius: "small",
-          fontStack: "rounded",
-        })}
-      >
-        <Component {...pageProps} />
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <SnackbarProvider autoHideDuration={2000}>
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider
+          chains={chains}
+          modalSize="compact"
+          theme={lightTheme({
+            accentColor: "whitesmoke",
+            accentColorForeground: "black",
+            borderRadius: "small",
+            fontStack: "rounded",
+          })}
+        >
+          <Component {...pageProps} />
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </SnackbarProvider>
   );
 }
 
