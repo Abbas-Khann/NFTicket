@@ -134,6 +134,34 @@ export const refundBackToContractLevelTen = async (
   }
 };
 
+export const toggleRefund = async (
+  refundId: string,
+  signer: FetchSignerResult<ethers.Signer> | undefined,
+  homeOrAway: boolean
+) => {
+  if (parseInt(refundId) > 0 && parseInt(refundId) < 201) {
+    refundBackToContractLevelOne(homeOrAway, refundId, signer);
+  } else if (parseInt(refundId) >= 201 && parseInt(refundId) < 401) {
+    refundBackToContractLevelTwo(homeOrAway, refundId, signer);
+  } else if (parseInt(refundId) >= 401 && parseInt(refundId) < 601) {
+    refundBackToContractLevelThree(homeOrAway, refundId, signer);
+  } else if (parseInt(refundId) >= 601 && parseInt(refundId) < 801) {
+    refundBackToContractLevelFour(homeOrAway, refundId, signer);
+  } else if (parseInt(refundId) >= 801 && parseInt(refundId) < 1001) {
+    refundBackToContractLevelFive(homeOrAway, refundId, signer);
+  } else if (parseInt(refundId) >= 1001 && parseInt(refundId) < 1201) {
+    refundBackToContractLevelSix(homeOrAway, refundId, signer);
+  } else if (parseInt(refundId) >= 1201 && parseInt(refundId) < 1401) {
+    refundBackToContractLevelSeven(homeOrAway, refundId, signer);
+  } else if (parseInt(refundId) >= 1401 && parseInt(refundId) < 1601) {
+    refundBackToContractLevelEight(homeOrAway, refundId, signer);
+  } else if (parseInt(refundId) >= 1601 && parseInt(refundId) < 1801) {
+    refundBackToContractLevelNine(homeOrAway, refundId, signer);
+  } else if (parseInt(refundId) >= 1801 && parseInt(refundId) < 2001) {
+    refundBackToContractLevelTen(homeOrAway, refundId, signer);
+  }
+};
+
 
 
 

@@ -38,22 +38,22 @@ const scaleChain: Chain = {
   testnet: true,
 };
 
-// const { chains, provider } = configureChains(
-//   [chain.goerli],
-//   [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
-// );
-
 const { chains, provider } = configureChains(
-  [scaleChain],
-  [
-    jsonRpcProvider({
-      rpc: (chain) => {
-        if (chain.id !== scaleChain.id) return null;
-        return { http: chain.rpcUrls.default };
-      },
-    }),
-  ]
+  [chain.polygonMumbai],
+  [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
 );
+
+// const { chains, provider } = configureChains(
+//   [scaleChain],
+//   [
+//     jsonRpcProvider({
+//       rpc: (chain) => {
+//         if (chain.id !== scaleChain.id) return null;
+//         return { http: chain.rpcUrls.default };
+//       },
+//     }),
+//   ]
+// );
 
 const { connectors } = getDefaultWallets({
   appName: "NFTicket",

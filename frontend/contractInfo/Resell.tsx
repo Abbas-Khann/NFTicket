@@ -411,4 +411,4 @@ export const RESELL_ABI = [
   },
 ];
 
-export const RESELL_ADDRESS = ""
+export const RESELL_ADDRESS = "0x1EbCe5Fdd6c437B789b21279f2dB623769404815";

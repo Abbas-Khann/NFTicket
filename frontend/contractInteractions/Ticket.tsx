@@ -142,3 +142,16 @@ export const buySeatLevelTen = async (
     console.log(error);
   }
 };
+
+export const approve = async (
+  to: string,
+  tokenId: string,
+  signer: FetchSignerResult<ethers.Signer> | undefined
+): Promise<void> => {
+  const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
+  try {
+    await TicketContract.approve(to, tokenId);
+  } catch (error: any) {
+    console.log(error);
+  }
+};

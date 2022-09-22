@@ -160,3 +160,32 @@ export const receiveTicketLevelTen = async (
     console.log(error);
   }
 };
+
+export const toggleResell = async (
+  homeOrAway: boolean,
+  tokenId: string,
+  from: string,
+  signer: FetchSignerResult<ethers.Signer> | undefined
+) => {
+  if (parseInt(tokenId) > 0 && parseInt(tokenId) < 201) {
+    receiveTicketLevelOne(homeOrAway, tokenId, from, signer);
+  } else if (parseInt(tokenId) >= 201 && parseInt(tokenId) < 401) {
+   receiveTicketLevelTwo(homeOrAway, tokenId, from, signer);
+  } else if (parseInt(tokenId) >= 401 && parseInt(tokenId) < 601) {
+    receiveTicketLevelThree(homeOrAway, tokenId, from, signer);
+  } else if (parseInt(tokenId) >= 601 && parseInt(tokenId) < 801) {
+   receiveTicketLevelFour(homeOrAway, tokenId, from, signer);
+  } else if (parseInt(tokenId) >= 801 && parseInt(tokenId) < 1001) {
+   receiveTicketLevelFive(homeOrAway, tokenId, from, signer);
+  } else if (parseInt(tokenId) >= 1001 && parseInt(tokenId) < 1201) {
+   receiveTicketLevelSix(homeOrAway, tokenId, from, signer);
+  } else if (parseInt(tokenId) >= 1201 && parseInt(tokenId) < 1401) {
+   receiveTicketLevelSeven(homeOrAway, tokenId, from, signer);
+  } else if (parseInt(tokenId) >= 1401 && parseInt(tokenId) < 1601) {
+   receiveTicketLevelEight(homeOrAway, tokenId, from, signer);
+  } else if (parseInt(tokenId) >= 1601 && parseInt(tokenId) < 1801) {
+   receiveTicketLevelNine(homeOrAway, tokenId, from, signer);
+  } else if (parseInt(tokenId) >= 1801 && parseInt(tokenId) < 2001) {
+   receiveTicketLevelTen(homeOrAway, tokenId, from, signer);
+  }
+};

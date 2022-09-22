@@ -189,5 +189,33 @@ export const refundTicketLevelTen = async (
   }
 };
 
+export const toggleReceiveRefund = async (
+  refundId: string,
+  signer: FetchSignerResult<ethers.Signer> | undefined,
+  homeOrAway: boolean
+) => {
+   if (parseInt(refundId) > 0 && parseInt(refundId) < 201) {
+     refundTicketLevelOne(homeOrAway, refundId, signer);
+   } else if (parseInt(refundId) >= 201 && parseInt(refundId) < 401) {
+     refundTicketLevelTwo(homeOrAway, refundId, signer);
+   } else if (parseInt(refundId) >= 401 && parseInt(refundId) < 601) {
+     refundTicketLevelThree(homeOrAway, refundId, signer);
+   } else if (parseInt(refundId) >= 601 && parseInt(refundId) < 801) {
+     refundTicketLevelFour(homeOrAway, refundId, signer);
+   } else if (parseInt(refundId) >= 801 && parseInt(refundId) < 1001) {
+     refundTicketLevelFive(homeOrAway, refundId, signer);
+   } else if (parseInt(refundId) >= 1001 && parseInt(refundId) < 1201) {
+     refundTicketLevelSix(homeOrAway, refundId, signer);
+   } else if (parseInt(refundId) >= 1201 && parseInt(refundId) < 1401) {
+     refundTicketLevelSeven(homeOrAway, refundId, signer);
+   } else if (parseInt(refundId) >= 1401 && parseInt(refundId) < 1601) {
+     refundTicketLevelEight(homeOrAway, refundId, signer);
+   } else if (parseInt(refundId) >= 1601 && parseInt(refundId) < 1801) {
+     refundTicketLevelNine(homeOrAway, refundId, signer);
+   } else if (parseInt(refundId) >= 1801 && parseInt(refundId) < 2001) {
+     refundTicketLevelTen(homeOrAway, refundId, signer);
+   }
+};
+
 
 

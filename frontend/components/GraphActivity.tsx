@@ -45,13 +45,21 @@ const GraphActivity = () => {
       async function fetchFromRefund() {
         const refundArray = await refundQuery(FETCH_REFUND());
          const receiveRefundArray = await receiveRefundQuery(FETCH_RECEIVE_REFUND());
-         const thisArray: subgraphArrays["refund"] = []
-         for(let i = 0; i<receiveRefundArray.receiveRefunds.length; i++) {
-           if(refundArray.refunds[i].id !== receiveRefundArray.receiveRefunds[i].id) {
-             thisArray.push(refundArray.refunds[i]);
-           }
+         const thisArray: number[] = []
+         const myArray: subgraphArrays["refund"] = []
+         for (let i = 0; i < receiveRefundArray.receiveRefunds.length; i++) {
+           thisArray.push(receiveRefundArray.receiveRefunds[i].id);
          }
-        setRefundArray(thisArray);
+        for(let i = 0; i<refundArray.refunds.length; i++) {
+          if(thisArray[i] !== undefined) {
+            if(thisArray[i] !== refundArray.refunds[i].id) {
+              myArray.push(refundArray.refunds[i]);
+            }
+          } else {
+             myArray.push(refundArray.refunds[i]);
+          }
+        }
+       setRefundArray(myArray);
       }
 
       useEffect(() => {
