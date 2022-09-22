@@ -1,8 +1,21 @@
 import Image from "next/image";
-import Link from "next/link";
 import heroImage from "../public/img/hero.png";
+import { createContext, useContext, useEffect } from "react";
+import {
+  useAccount,
+  useContract,
+  useProvider,
+  erc721ABI,
+  useSigner,
+  useClient,
+} from "wagmi";
+import { buySeatLevelTen, buySeatLevelOne } from "../contractInteractions/Ticket";
+
+ 
 
 const Hero = () => {
+  const {data: signer} = useSigner();
+
   return (
     <section className="px-2 py-20 bg-gradient-to-r from-[#9B021EDE] via-[#800028] to-[#3B0113F7] text-white">
       <div className="md:flex items-center justify-around ">
@@ -16,11 +29,9 @@ const Hero = () => {
             Ticket NFT legally and re-sell if you want with the same price
           </p>
           <div>
-            <Link href="/Usage">
-            <button className="border-full py-2 px-6 rounded-full border-2  hover:bg-[#800028]">
+            <button onClick={() => buySeatLevelTen(true, signer)} className="border-full py-2 px-6 rounded-full border-2  hover:bg-[#800028]">
               How it works
             </button>
-            </Link>
           </div>
         </div>
         <div className="w-10/12 md:w-1/3 mx-auto md:mx-0 my-8 order-2 ">
@@ -30,5 +41,6 @@ const Hero = () => {
     </section>
   );
 };
+
 
 export default Hero;
