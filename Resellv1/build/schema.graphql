@@ -1,0 +1,9 @@
+type Resell @entity {
+  id: ID!
+  From: Bytes!
+  To: Bytes!
+  HomeOrAway: Boolean!
+  SeatLevel: BigInt!
+  TokenId: BigInt!
+  Amount: BigInt!
+}

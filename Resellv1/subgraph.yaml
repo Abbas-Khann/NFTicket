@@ -1,0 +1,27 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Resell
+    network: mumbai
+    source:
+      address: "0x42b79399D5Bd3575c4D1c05f611b8187ef648D02"
+      abi: Resell
+      startBlock: 28207213
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - OwnershipTransferred
+        - ResellTicket
+      abis:
+        - name: Resell
+          file: ./abis/Resell.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: ResellTicket(address,address,bool,uint256,uint256,uint256)
+          handler: handleResellTicket
+      file: ./src/resell.ts
