@@ -23,7 +23,7 @@ const Hero = () => {
          let filestorage = new Filestorage(web3, true);
          let privateKey =
            "0x" +
-           "d5b8e82e503c8ab0ea818ad4adb38adae3b1a3ec2f23d4f911614b3fffe7b6a0";
+           "";
          let account = "0xbB7b095D779621cC4db92CdebD08f0a87FBA1D40";
          let file = selectedFile
          let reader = new FileReader();
