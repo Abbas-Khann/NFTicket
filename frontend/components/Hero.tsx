@@ -1,20 +1,55 @@
 import Image from "next/image";
 import heroImage from "../public/img/hero.png";
-import { createContext, useContext, useEffect } from "react";
+import { useState } from "react";
 import {
-  useAccount,
-  useContract,
-  useProvider,
-  erc721ABI,
   useSigner,
-  useClient,
 } from "wagmi";
-import { buySeatLevelTen, buySeatLevelOne } from "../contractInteractions/Ticket";
-
- 
+const Filestorage = require("@skalenetwork/filestorage.js");
+const Web3 = require("web3");
 
 const Hero = () => {
-  const {data: signer} = useSigner();
+  const [selectedFile, setSelectedFile] = useState();
+      
+       //let filestorage = new Filestorage(web3Provider);
+       const changeHandler = (event: React.ChangeEvent) => {
+         setSelectedFile(event.target.files[0]);
+       };
+
+       async function upload() {
+         const web3Provider = new Web3.providers.HttpProvider(
+           "https://eth-online.skalenodes.com/v1/hackathon-content-live-vega"
+         );
+         let web3 = new Web3(web3Provider);
+         let filestorage = new Filestorage(web3, true);
+         let privateKey =
+           "0x" +
+           "d5b8e82e503c8ab0ea818ad4adb38adae3b1a3ec2f23d4f911614b3fffe7b6a0";
+         let account = "0xbB7b095D779621cC4db92CdebD08f0a87FBA1D40";
+         let file = selectedFile
+         let reader = new FileReader();
+
+         //file path in account tree (dirA/file.name)
+        //  let filePath = ""
+        //  if (specificDirectory === "") {
+        //    filePath = file.name;
+        //  } else {
+        //    filePath = specificDirectory + "/" + file.name;
+        //  }
+
+         //file storage method to upload file
+         reader.onload = async function (e) {
+           const arrayBuffer = reader.result;
+           const bytes = new Uint8Array(arrayBuffer);
+           let link = filestorage.uploadFile(
+             account,
+             file?.name,
+             bytes,
+             privateKey
+           );
+            console.log(link);
+         };
+         reader.readAsArrayBuffer(file);
+      }
 
   return (
     <section className="px-2 py-20 bg-gradient-to-r from-[#9B021EDE] via-[#800028] to-[#3B0113F7] text-white">
@@ -29,7 +64,15 @@ const Hero = () => {
             Ticket NFT legally and re-sell if you want with the same price
           </p>
           <div>
-            <button onClick={() => buySeatLevelTen(true, signer)} className="border-full py-2 px-6 rounded-full border-2  hover:bg-[#800028]">
+            <input type="file" name="file" onChange={changeHandler} />
+            <img
+              src="https://eth-online.skalenodes.com/v1/hackathon-content-live-vega/bB7b095D779621cC4db92CdebD08f0a87FBA1D40/valist.png"
+              alt=""
+            />
+            <button
+              onClick={upload}
+              className="border-full py-2 px-6 rounded-full border-2  hover:bg-[#800028]"
+            >
               How it works
             </button>
           </div>

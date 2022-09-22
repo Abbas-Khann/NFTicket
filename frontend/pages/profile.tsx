@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Navbar from '../components/Navbar'
-import TicketCard from '../components/TicketCard';
+import TicketCard from '../components/TicketCards/TicketCard';
 import Image from 'next/image';
 import empty from '../public/img/empty.png';
 

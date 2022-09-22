@@ -1,6 +1,7 @@
-import { ethers, Contract } from "ethers";
+import { ethers, Contract, BigNumber } from "ethers";
 import { TICKET_ABI, TICKET_ADDRESS } from "../contractInfo/Ticket";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const buySeatLevelOne = async (
   homeOrAway: boolean,
@@ -8,11 +9,29 @@ export const buySeatLevelOne = async (
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
-    await TicketContract.buySeatLevelOne(homeOrAway, {
+    const tx = await TicketContract.buySeatLevelOne(homeOrAway, {
       value: ethers.utils.parseEther("5"),
     });
+    await tx.wait()
+    toast.success("You Have Successfully Bought A Level One Ticket", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
-    console.log(error);
+   toast.error("Make Sure You Have Enough Funds", {
+     position: "top-right",
+     autoClose: 5000,
+     hideProgressBar: false,
+     closeOnClick: true,
+     pauseOnHover: true,
+     draggable: true,
+     progress: undefined,
+   });
   }
 };
 
@@ -151,6 +170,28 @@ export const approve = async (
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
     await TicketContract.approve(to, tokenId);
+  } catch (error: any) {
+    console.log(error);
+  }
+};
+
+export const homeSeatLevelCount = async (provider: Provider): Promise<string | undefined> => {
+  const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, provider);
+  try {
+   const count = await TicketContract.homeSeatLevelCount(1);
+   return count.toString()
+  } catch (error: any) {
+    console.log(error);
+  }
+};
+
+export const awaySeatLevelCount = async (
+  provider: Provider
+): Promise<string | undefined> => {
+  const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, provider);
+  try {
+    const count = await TicketContract.awaySeatLevelCount(1);
+    return count.toString();
   } catch (error: any) {
     console.log(error);
   }
