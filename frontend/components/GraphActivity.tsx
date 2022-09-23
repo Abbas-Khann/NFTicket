@@ -3,7 +3,7 @@ import {ethers, BigNumber} from "ethers"
 import { FETCH_TICKET, ticketQuery, FETCH_RESELL, resellQuery, refundQuery, FETCH_REFUND, FETCH_RECEIVE_REFUND, receiveRefundQuery } from "../fetchSubgraph/subgraphs";
 import {TICKET_ADDRESS} from "../contractInfo/Ticket"
 
-type subgraphArrays = {
+export type subgraphArrays = {
   tickets: {
     From: string;
     HomeOrAway: boolean;
@@ -182,11 +182,8 @@ const GraphActivity = () => {
                 >
                   {t?.id}
                 </th>
-                {/* <td className="py-4 px-6">{TICKET_ADDRESS}</td> */}
-                {/* <td className="py-4 px-6">{t?.From}</td> */}
                 <td className="py-4 px-6">{t?.HomeOrAway.toString()}</td>
                 <td className="py-4 px-8">{t?.SeatLevel}</td>
-                {/* <td className="py-4 px-6">Refund</td> */}
                 <td className="py-4 px-6">
                   {ethers.utils.formatEther(t?.Amount)} SFUEL
                 </td>

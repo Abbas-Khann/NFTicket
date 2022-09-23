@@ -13,9 +13,10 @@ import {
   createClient,
   WagmiConfig,
 } from "wagmi";
-import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import { ToastContainer } from "react-toastify";
 import { SnackbarProvider } from "notistack";
 
 const scaleChain: Chain = {
@@ -82,6 +83,18 @@ function MyApp({ Component, pageProps }: AppProps) {
           })}
         >
           <Component {...pageProps} />
+          <ToastContainer
+            theme="dark"
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </RainbowKitProvider>
       </WagmiConfig>
     </SnackbarProvider>

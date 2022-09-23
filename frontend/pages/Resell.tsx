@@ -38,7 +38,7 @@ const Resell = () => {
           <div className="flex w-72 justify-between py-6">
             <p className="text-white text-2xl">Ticket Type ➩</p>
             <select
-              className="text-black"
+              className="text-black rounded-lg px-2 cursor-pointer outline-none"
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                 setHomeOrAwayOne(e.target.value)
               }
@@ -77,7 +77,7 @@ const Resell = () => {
           <div className="flex w-72 justify-between py-6">
             <p className="text-white text-2xl">Ticket Type ➩</p>
             <select
-              className="text-black"
+              className="text-black rounded-lg px-2 cursor-pointer outline-none"
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                 setHomeOrAwayTwo(e.target.value)
               }
@@ -123,11 +123,7 @@ const Resell = () => {
             }
           />
           <button
-            onClick={() =>
-              approve(
-                approveAddress, approveId, signer
-              )
-            }
+            onClick={() => approve(approveAddress, approveId, signer)}
             className="bg-white px-12 rounded-3xl py-2 text-black mb-20"
           >
             Approve
@@ -157,7 +153,7 @@ const Resell = () => {
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                 setHomeOrAwayThree(e.target.value)
               }
-              className="text-black"
+              className="text-black rounded-lg px-2 cursor-pointer outline-none"
             >
               {options.map((option) => (
                 <option key={option.value} value={option.value}>

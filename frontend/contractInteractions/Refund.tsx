@@ -1,5 +1,7 @@
 import { ethers, Contract } from "ethers";
 import { REFUND_ABI, REFUND_ADDRESS } from "../contractInfo/Refund";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const refundBackToContractLevelOne = async (
   homeOrAway: boolean,
@@ -8,11 +10,33 @@ export const refundBackToContractLevelOne = async (
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
-    await RefundContract.refundBackToContractLevelOne(
+    const tx = await RefundContract.refundBackToContractLevelOne(
       homeOrAway,
       tokenId
     );
+    await tx.wait();
+    toast.success(`You Have Successfully Refunded Ticket ${tokenId}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
+    toast.error(
+      "Transaction Failed, Make Sure You Own This TokenId And It Exists",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     console.log(error);
   }
 };
@@ -24,8 +48,33 @@ export const refundBackToContractLevelTwo = async (
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
-    await RefundContract.refundBackToContractLevelTwo(homeOrAway, tokenId);
+    const tx = await RefundContract.refundBackToContractLevelTwo(
+      homeOrAway,
+      tokenId
+    );
+    await tx.wait();
+    toast.success(`You Have Successfully Refunded Ticket ${tokenId}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
+    toast.error(
+      "Transaction Failed, Make Sure You Own This TokenId And It Exists ",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     console.log(error);
   }
 };
@@ -37,8 +86,33 @@ export const refundBackToContractLevelThree = async (
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
-    await RefundContract.refundBackToContractLevelThree(homeOrAway, tokenId);
+    const tx = await RefundContract.refundBackToContractLevelThree(
+      homeOrAway,
+      tokenId
+    );
+    await tx.wait();
+    toast.success(`You Have Successfully Refunded Ticket ${tokenId}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
+    toast.error(
+      "Transaction Failed, Make Sure You Own This TokenId And It Exists ",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     console.log(error);
   }
 };
@@ -50,8 +124,33 @@ export const refundBackToContractLevelFour = async (
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
-    await RefundContract.refundBackToContractLevelFour(homeOrAway, tokenId);
+    const tx = await RefundContract.refundBackToContractLevelFour(
+      homeOrAway,
+      tokenId
+    );
+    await tx.wait();
+    toast.success(`You Have Successfully Refunded Ticket ${tokenId}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
+    toast.error(
+      "Transaction Failed, Make Sure You Own This TokenId And It Exists ",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     console.log(error);
   }
 };
@@ -63,8 +162,33 @@ export const refundBackToContractLevelFive = async (
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
-    await RefundContract.refundBackToContractLevelFive(homeOrAway, tokenId);
+    const tx = await RefundContract.refundBackToContractLevelFive(
+      homeOrAway,
+      tokenId
+    );
+    await tx.wait();
+    toast.success(`You Have Successfully Refunded Ticket ${tokenId}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
+    toast.error(
+      "Transaction Failed, Make Sure You Own This TokenId And It Exists ",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     console.log(error);
   }
 };
@@ -76,8 +200,33 @@ export const refundBackToContractLevelSix = async (
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
-    await RefundContract.refundBackToContractLevelSix(homeOrAway, tokenId);
+    const tx = await RefundContract.refundBackToContractLevelSix(
+      homeOrAway,
+      tokenId
+    );
+    await tx.wait();
+    toast.success(`You Have Successfully Refunded Ticket ${tokenId}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
+    toast.error(
+      "Transaction Failed, Make Sure You Own This TokenId And It Exists ",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     console.log(error);
   }
 };
@@ -89,8 +238,33 @@ export const refundBackToContractLevelSeven = async (
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
-    await RefundContract.refundBackToContractLevelSeven(homeOrAway, tokenId);
+    const tx = await RefundContract.refundBackToContractLevelSeven(
+      homeOrAway,
+      tokenId
+    );
+    await tx.wait();
+    toast.success(`You Have Successfully Refunded Ticket ${tokenId}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
+    toast.error(
+      "Transaction Failed, Make Sure You Own This TokenId And It Exists ",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     console.log(error);
   }
 };
@@ -102,8 +276,33 @@ export const refundBackToContractLevelEight = async (
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
-    await RefundContract.refundBackToContractLevelEight(homeOrAway, tokenId);
+    const tx = await RefundContract.refundBackToContractLevelEight(
+      homeOrAway,
+      tokenId
+    );
+    await tx.wait();
+    toast.success(`You Have Successfully Refunded Ticket ${tokenId}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
+    toast.error(
+      "Transaction Failed, Make Sure You Own This TokenId And It Exists ",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     console.log(error);
   }
 };
@@ -115,8 +314,33 @@ export const refundBackToContractLevelNine = async (
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
-    await RefundContract.refundBackToContractLevelNine(homeOrAway, tokenId);
+    const tx = await RefundContract.refundBackToContractLevelNine(
+      homeOrAway,
+      tokenId
+    );
+    await tx.wait();
+    toast.success(`You Have Successfully Refunded Ticket ${tokenId}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
+    toast.error(
+      "Transaction Failed, Make Sure You Own This TokenId And It Exists ",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     console.log(error);
   }
 };
@@ -128,8 +352,33 @@ export const refundBackToContractLevelTen = async (
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
-    await RefundContract.refundBackToContractLevelTen(homeOrAway, tokenId);
+    const tx = await RefundContract.refundBackToContractLevelTen(
+      homeOrAway,
+      tokenId
+    );
+    await tx.wait();
+    toast.success(`You Have Successfully Refunded Ticket ${tokenId}!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error: any) {
+    toast.error(
+      "Transaction Failed, Make Sure You Own This TokenId And It Exists ",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     console.log(error);
   }
 };
@@ -161,7 +410,3 @@ export const toggleRefund = async (
     refundBackToContractLevelTen(homeOrAway, refundId, signer);
   }
 };
-
-
-
-
