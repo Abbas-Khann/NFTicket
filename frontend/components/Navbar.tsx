@@ -13,21 +13,23 @@ import { useAccount } from "wagmi";
 const Navbar = () => {
   // --------- States here -------------
   const [expand, setExpand] = useState<boolean>(false);
-const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-   const account = useAccount({
-     onConnect({}) {
-       enqueueSnackbar("Wallet Connected!", {
-         variant: "success",
-         preventDuplicate: true,
-       });
-     },
-     onDisconnect() {
-       enqueueSnackbar("Wallet Disconnected!", {
-         variant: "success",
-         preventDuplicate: true,
-       });
-     },
-   });
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  // Wallet Connection Notifications
+  const account = useAccount({
+    onConnect({}) {
+      enqueueSnackbar("Wallet Connected!", {
+        variant: "success",
+        preventDuplicate: true,
+      });
+    },
+    onDisconnect() {
+      enqueueSnackbar("Wallet Disconnected!", {
+        variant: "success",
+        preventDuplicate: true,
+      });
+    },
+  });
 
   return (
     <nav className="max-w-full bg-[#FFB200] px-4 py-8 grid grid-cols-2 grid-rows-1 gap-y-7 justify-items-end h-full content-center lg:flex lg:justify-around lg:px-0 font-plus relative lg:items-center ">
@@ -149,16 +151,16 @@ const { enqueueSnackbar, closeSnackbar } = useSnackbar();
                 Tickets
               </button>
             </Link>
-              <Link href="/Activity">
-            <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
-              Activity
-            </button>
-          </Link>
-          <Link href="/Resell">
-            <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
-              Resell
-            </button>
-          </Link>
+            <Link href="/Activity">
+              <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
+                Activity
+              </button>
+            </Link>
+            <Link href="/Resell">
+              <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
+                Resell
+              </button>
+            </Link>
           </ul>
         </div>
       </Transition>
