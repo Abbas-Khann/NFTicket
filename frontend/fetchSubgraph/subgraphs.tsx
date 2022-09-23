@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function FETCH_TICKET() {
   return `query {
-       tickets(orderDirection:asc) {
+       tickets(orderBy:id) {
        id
        From
        HomeOrAway
@@ -15,7 +15,7 @@ export function FETCH_TICKET() {
 
 export function FETCH_RESELL() {
   return `query {
-      resells(orderDirection:asc) {
+      resells(orderBy:id) {
       id
       From
       To
@@ -45,6 +45,7 @@ export function FETCH_RECEIVE_REFUND() {
         To
         HomeOrAway
         SeatLevel
+        Amount
      }
       }`;
 }

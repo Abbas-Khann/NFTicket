@@ -14,7 +14,7 @@ const Hero = () => {
        const changeHandler = (event: React.ChangeEvent) => {
          setSelectedFile(event.target.files[0]);
        };
-
+     
        async function upload() {
          const web3Provider = new Web3.providers.HttpProvider(
            "https://eth-online.skalenodes.com/v1/hackathon-content-live-vega"
@@ -23,9 +23,9 @@ const Hero = () => {
          let filestorage = new Filestorage(web3, true);
          let privateKey =
            "0x" +
-           "";
+           "d5b8e82e503c8ab0ea818ad4adb38adae3b1a3ec2f23d4f911614b3fffe7b6a0";
          let account = "0xbB7b095D779621cC4db92CdebD08f0a87FBA1D40";
-         let file = selectedFile
+         let file = heroImage
          let reader = new FileReader();
 
          //file path in account tree (dirA/file.name)
@@ -35,14 +35,14 @@ const Hero = () => {
         //  } else {
         //    filePath = specificDirectory + "/" + file.name;
         //  }
-
+       console.log(selectedFile);
          //file storage method to upload file
          reader.onload = async function (e) {
            const arrayBuffer = reader.result;
            const bytes = new Uint8Array(arrayBuffer);
            let link = filestorage.uploadFile(
              account,
-             file?.name,
+             "3000",
              bytes,
              privateKey
            );
@@ -66,7 +66,7 @@ const Hero = () => {
           <div>
             <input type="file" name="file" onChange={changeHandler} />
             <img
-              src="https://eth-online.skalenodes.com/v1/hackathon-content-live-vega/bB7b095D779621cC4db92CdebD08f0a87FBA1D40/valist.png"
+              // src="https://eth-online.skalenodes.com/fs/hackathon-content-live-vega/bb7b095d779621cc4db92cdebd08f0a87fba1d40/3000"
               alt=""
             />
             <button

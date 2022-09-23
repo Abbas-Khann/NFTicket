@@ -3,7 +3,7 @@ import {ethers, BigNumber} from "ethers"
 import { FETCH_TICKET, ticketQuery, FETCH_RESELL, resellQuery, refundQuery, FETCH_REFUND, FETCH_RECEIVE_REFUND, receiveRefundQuery } from "../fetchSubgraph/subgraphs";
 import {TICKET_ADDRESS} from "../contractInfo/Ticket"
 
-type subgraphArrays = {
+export type subgraphArrays = {
   tickets: {
     From: string;
     HomeOrAway: boolean;
