@@ -7,10 +7,27 @@ import { MdClose } from "react-icons/md";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import logo from "../public/img/[NFTICKET].png";
+import { useSnackbar } from "notistack";
+import { useAccount } from "wagmi";
 
 const Navbar = () => {
   // --------- States here -------------
   const [expand, setExpand] = useState<boolean>(false);
+const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+   const account = useAccount({
+     onConnect({}) {
+       enqueueSnackbar("Wallet Connected!", {
+         variant: "success",
+         preventDuplicate: true,
+       });
+     },
+     onDisconnect() {
+       enqueueSnackbar("Wallet Disconnected!", {
+         variant: "success",
+         preventDuplicate: true,
+       });
+     },
+   });
 
   return (
     <nav className="max-w-full bg-[#FFB200] px-4 py-8 grid grid-cols-2 grid-rows-1 gap-y-7 justify-items-end h-full content-center lg:flex lg:justify-around lg:px-0 font-plus relative lg:items-center ">

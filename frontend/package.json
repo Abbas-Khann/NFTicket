@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@headlessui/react": "^1.6.6",
     "@rainbow-me/rainbowkit": "^0.5.1",
     "@skalenetwork/filestorage.js": "~1.0.0",
@@ -18,6 +20,7 @@
     "ethers": "^5.7.0",
     "next": "12.2.5",
     "next-seo": "^5.5.0",
+    "notistack": "^2.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",

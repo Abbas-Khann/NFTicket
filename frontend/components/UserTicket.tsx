@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Match from "../public/img/Match.png";
 import Skale from "../public/img/skale-logo.png"
 import Image from "next/image";
 import { useAccount } from "wagmi";
@@ -126,18 +125,15 @@ useEffect(() => {
     <>
     {userInfo.map((u, idx) => {
         return (
-          <section className="h-[440px] max-w-[290px] bg-[#F5F5F5] px-3 md:px-6 pb-6 pt-8 my-16 mx-10 rounded-xl">
+          <section key={idx} className="h-[440px] max-w-[290px] bg-[#F5F5F5] px-3 md:px-6 pb-6 pt-8 my-16 mx-10 rounded-xl">
             <div className="max-w-[220px] mb-6 relative">
               <div className="z-10 w-full h-full absolute flex flex-col justify-center items-center space-y-10">
                 <h1 className="text-gray-200 z-10 text-2xl font-medium">
-                  {/* for country names you can use the dynamic image here */}
                 </h1>
                 <h1 className="text-gray-200 z-10 text-2xl font-medium">
-                  {/* same here  */}
                 </h1>
               </div>
-              {/* <img src={`https://eth-online.skalenodes.com/fs/hackathon-content-live-vega/bb7b095d779621cc4db92cdebd08f0a87fba1d40/${u.id}`} /> */}
-              <Image src={Match}/>
+              <img src={`https://eth-online.skalenodes.com/fs/hackathon-content-live-vega/bb7b095d779621cc4db92cdebd08f0a87fba1d40/1`} />
             </div>
             <div className="flex justify-around mb-2">
               <h2 className="text-[#818A96] font-medium">TokenID</h2>

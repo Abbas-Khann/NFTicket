@@ -20,6 +20,7 @@ error EVENT_HASNT_STARTED_YET();
 error NOT_ALLOWED_TO_TRANSFER();
 
 contract Ticket is ERC721, Ownable, ReentrancyGuard {
+  using Strings for uint256;
    event BuyTicket(address From, bool HomeOrAway, uint SeatLevel, uint TokenId, uint Amount);
    mapping(uint => mapping(address => uint)) public homeTicketsOwned; //seatLevel => owner => amount minted
    mapping(uint => mapping(address => uint)) public awayTicketsOwned; //seatLevel => owner => amount minted
@@ -28,7 +29,7 @@ contract Ticket is ERC721, Ownable, ReentrancyGuard {
    address public refundContract;
    address public receiveRefundedTicketContract;
    uint immutable timeUntilEventStarts;
-    constructor(uint _time) ERC721("", "")  {
+    constructor(uint _time) ERC721("WCTicket", "WCT")  {
        timeUntilEventStarts = block.timestamp + _time;
     }
    bool paused;
@@ -479,6 +480,17 @@ contract Ticket is ERC721, Ownable, ReentrancyGuard {
    function awaySeatLevelCount(uint _seatLevel) external view returns(uint) {
       return seatLevelCount[false][_seatLevel];
    }
+
+   function _baseURI() internal view virtual override returns (string memory) {
+        return "https://eth-online.skalenodes.com/fs/hackathon-content-live-vega/bb7b095d779621cc4db92cdebd08f0a87fba1d40/";
+    }
+
+      function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+        _requireMinted(tokenId);
+
+        string memory baseURI = _baseURI();
+        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : "";
+    }
    
     function withdraw() external onlyOwner onlyAfterEventHasStarted {
         address _owner = owner();
