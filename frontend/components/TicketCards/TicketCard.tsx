@@ -6,7 +6,6 @@ import {buySeatLevelOne} from "../../contractInteractions/Ticket"
 import { useSigner, useProvider } from "wagmi";
 import {Contract} from "ethers";
 import { TICKET_ABI, TICKET_ADDRESS } from "../../contractInfo/Ticket";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 

@@ -13,7 +13,7 @@ import {
   createClient,
   WagmiConfig,
 } from "wagmi";
-import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ToastContainer } from "react-toastify";
