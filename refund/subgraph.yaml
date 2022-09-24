@@ -1,0 +1,27 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Refund
+    network: skale
+    source:
+      address: "0xfC93423589b932279FcD98889910134CE1FB3E0A"
+      abi: Refund
+      startBlock: 231787
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - OwnershipTransferred
+        - RefundTicket
+      abis:
+        - name: Refund
+          file: ./abis/Refund.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RefundTicket(bool,uint256,uint256,uint256)
+          handler: handleRefundTicket
+      file: ./src/refund.ts

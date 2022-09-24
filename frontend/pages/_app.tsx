@@ -8,14 +8,11 @@ import {
 } from "@rainbow-me/rainbowkit";
 import {
   Chain,
-  chain,
   configureChains,
   createClient,
-  WagmiConfig,
+  WagmiConfig
 } from "wagmi";
-
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { ToastContainer } from "react-toastify";
 import { SnackbarProvider } from "notistack";
 
@@ -41,21 +38,16 @@ const scaleChain: Chain = {
 };
 
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai],
-  [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
+  [scaleChain],
+  [
+    jsonRpcProvider({
+      rpc: (chain) => {
+        if (chain.id !== scaleChain.id) return null;
+        return { http: chain.rpcUrls.default };
+      },
+    }),
+  ]
 );
-
-// const { chains, provider } = configureChains(
-//   [scaleChain],
-//   [
-//     jsonRpcProvider({
-//       rpc: (chain) => {
-//         if (chain.id !== scaleChain.id) return null;
-//         return { http: chain.rpcUrls.default };
-//       },
-//     }),
-//   ]
-// );
 
 const { connectors } = getDefaultWallets({
   appName: "NFTicket",

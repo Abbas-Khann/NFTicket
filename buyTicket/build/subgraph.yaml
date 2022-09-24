@@ -1,0 +1,36 @@
+specVersion: 0.0.4
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Ticket
+    network: skale
+    source:
+      address: "0x4a5766Dc70772cfA047DCeCbfE069Cd9f5D9E0B7"
+      abi: Ticket
+      startBlock: 231785
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - BuyTicket
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: Ticket
+          file: Ticket/abis/Ticket.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: BuyTicket(address,bool,uint256,uint256,uint256)
+          handler: handleBuyTicket
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: Ticket/Ticket.wasm

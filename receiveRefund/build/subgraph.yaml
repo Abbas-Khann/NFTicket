@@ -1,0 +1,27 @@
+specVersion: 0.0.4
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: ReceiveRefundedTicketFromContract
+    network: skale
+    source:
+      address: "0x890115924807E5247981C80702cba2eAaFB12a8b"
+      abi: ReceiveRefundedTicketFromContract
+      startBlock: 231788
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - OwnershipTransferred
+        - ReceiveRefundedTicket
+      abis:
+        - name: ReceiveRefundedTicketFromContract
+          file: ReceiveRefundedTicketFromContract/abis/ReceiveRefundedTicketFromContract.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: ReceiveRefundedTicket(address,bool,uint256,uint256,uint256)
+          handler: handleReceiveRefundedTicket
+      file: ReceiveRefundedTicketFromContract/ReceiveRefundedTicketFromContract.wasm
