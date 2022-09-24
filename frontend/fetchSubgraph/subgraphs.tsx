@@ -55,7 +55,7 @@ export function FETCH_RECEIVE_REFUND() {
 export async function ticketQuery(query: any) {
   try {
     const SUBGRAPH_URL =
-      "https://hackathon-content-live-vega-graph.skale.network/subgraphs/name/ljcutts/buyTicket/graphql";
+      "https://api.thegraph.com/subgraphs/name/ljcutts/buyticket";
     const response = await axios.post(SUBGRAPH_URL, {
       query,
     });
@@ -72,7 +72,7 @@ export async function ticketQuery(query: any) {
 export async function resellQuery(query: any) {
   try {
     const SUBGRAPH_URL =
-      "https://hackathon-content-live-vega-graph.skale.network/subgraphs/name/ljcutts/resell/graphql";
+      "https://api.thegraph.com/subgraphs/name/ljcutts/resell";
     const response = await axios.post(SUBGRAPH_URL, {
       query,
     });
@@ -89,7 +89,7 @@ export async function resellQuery(query: any) {
 export async function refundQuery(query: any) {
   try {
     const SUBGRAPH_URL =
-      "https://hackathon-content-live-vega-graph.skale.network/subgraphs/name/ljcutts/refund/graphql";
+      "https://api.thegraph.com/subgraphs/name/ljcutts/refund";
     const response = await axios.post(SUBGRAPH_URL, {
       query,
     });
@@ -106,7 +106,7 @@ export async function refundQuery(query: any) {
 export async function receiveRefundQuery(query: any) {
   try {
     const SUBGRAPH_URL =
-      "https://hackathon-content-live-vega-graph.skale.network/subgraphs/name/ljcutts/receiveRefund/graphql";
+      "https://api.thegraph.com/subgraphs/name/ljcutts/receiverefund";
     const response = await axios.post(SUBGRAPH_URL, {
       query,
     });

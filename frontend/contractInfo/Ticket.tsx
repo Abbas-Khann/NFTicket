@@ -948,4 +948,4 @@ export const TICKET_ABI = [
     type: "receive",
   },
 ];
-export const TICKET_ADDRESS = "0x4a5766Dc70772cfA047DCeCbfE069Cd9f5D9E0B7";
+export const TICKET_ADDRESS = "0x9e468dcef5809F35bE8eE69E5Bc4101BB9D55884";
