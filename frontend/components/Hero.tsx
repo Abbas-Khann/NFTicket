@@ -1,8 +1,11 @@
 import Image from "next/image";
 import heroImage from "../public/img/hero.png";
+import { useEffect, useState } from "react";
+
 
 
 const Hero = () => {
+ 
   return (
     <section className="px-2 py-20 bg-gradient-to-r from-[#9B021EDE] via-[#800028] to-[#3B0113F7] text-white">
       <div className="md:flex items-center justify-around ">
@@ -16,9 +19,7 @@ const Hero = () => {
             Ticket NFT legally and re-sell if you want with the same price
           </p>
           <div>
-            <button
-              className="border-full py-2 px-6 rounded-full border-2  hover:bg-[#800028]"
-            >
+            <button className="border-full py-2 px-6 rounded-full border-2  hover:bg-[#800028]">
               How it works
             </button>
           </div>
