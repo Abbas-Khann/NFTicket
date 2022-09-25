@@ -80,7 +80,7 @@ const Usage = () => {
           <iframe
             width="760"
             height="455"
-            src="https://www.youtube.com/embed/fs5Xp1P8Gck"
+            src="https://www.youtube.com/embed/MY-cvrlX3ao"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           ></iframe>
