@@ -1,6 +1,5 @@
 import Image from "next/image";
 import heroImage from "../public/img/hero.png";
-import { useEffect, useState } from "react";
 
 
 

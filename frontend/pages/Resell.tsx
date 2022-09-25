@@ -10,12 +10,12 @@ import { useSigner } from 'wagmi';
 const Resell = () => {
    const options = [{ value: "Home" }, { value: "Away" }];
    const { data: signer } = useSigner();
-  const [refundId, setRefundId] = useState("")
-  const [refundIdTwo, setRefundIdTwo] = useState("");
-  const [approveId, setApproveId] = useState("");
-  const [resellId, setResellId] = useState("");
-  const [approveAddress, setApproveAdress] = useState("");
-  const [resellAddress, setResellAdress] = useState("")
+  const [refundId, setRefundId] = useState<string>("")
+  const [refundIdTwo, setRefundIdTwo] = useState<string>("");
+  const [approveId, setApproveId] = useState<string>("");
+  const [resellId, setResellId] = useState<string>("");
+  const [approveAddress, setApproveAdress] = useState<string>("");
+  const [resellAddress, setResellAdress] = useState<string>("")
   const [homeorAwayOne, setHomeOrAwayOne] = useState(options[0].value);
   const [homeorAwayTwo, setHomeOrAwayTwo] = useState(options[0].value);
   const [homeorAwayThree, setHomeOrAwayThree] = useState(options[0].value);

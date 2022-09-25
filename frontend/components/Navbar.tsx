@@ -126,7 +126,6 @@ const { enqueueSnackbar, closeSnackbar } = useSnackbar();
         >
           <div className="flex space-x-2 items-center w-auto mb-24">
             <Image src={logo} width={120} height={20} />
-            {/* <h1 className="text-xl">NFTicket</h1> */}
           </div>
           <ul className=" flex flex-col justify-between basis-2/6 items-start mb-20">
             <Link href="/">
