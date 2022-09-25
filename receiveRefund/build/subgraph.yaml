@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: ReceiveRefundedTicketFromContract
-    network: skale
+    network: mumbai
     source:
-      address: "0x890115924807E5247981C80702cba2eAaFB12a8b"
+      address: "0xe2103C7604B4faC04955f678EDC6DE8041586FDE"
       abi: ReceiveRefundedTicketFromContract
-      startBlock: 231788
+      startBlock: 28270687
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

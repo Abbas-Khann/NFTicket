@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const refundBackToContractLevelOne = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
@@ -44,7 +44,7 @@ export const refundBackToContractLevelOne = async (
 export const refundBackToContractLevelTwo = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
@@ -82,7 +82,7 @@ export const refundBackToContractLevelTwo = async (
 export const refundBackToContractLevelThree = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
@@ -120,7 +120,7 @@ export const refundBackToContractLevelThree = async (
 export const refundBackToContractLevelFour = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
@@ -158,7 +158,7 @@ export const refundBackToContractLevelFour = async (
 export const refundBackToContractLevelFive = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
@@ -196,7 +196,7 @@ export const refundBackToContractLevelFive = async (
 export const refundBackToContractLevelSix = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
@@ -234,7 +234,7 @@ export const refundBackToContractLevelSix = async (
 export const refundBackToContractLevelSeven = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
@@ -272,7 +272,7 @@ export const refundBackToContractLevelSeven = async (
 export const refundBackToContractLevelEight = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
@@ -310,7 +310,7 @@ export const refundBackToContractLevelEight = async (
 export const refundBackToContractLevelNine = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
@@ -348,7 +348,7 @@ export const refundBackToContractLevelNine = async (
 export const refundBackToContractLevelTen = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const RefundContract = new Contract(REFUND_ADDRESS, REFUND_ABI, signer);
   try {
@@ -385,7 +385,7 @@ export const refundBackToContractLevelTen = async (
 
 export const toggleRefund = async (
   refundId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined,
+  signer: any,
   homeOrAway: boolean
 ) => {
   if (parseInt(refundId) > 0 && parseInt(refundId) < 201) {

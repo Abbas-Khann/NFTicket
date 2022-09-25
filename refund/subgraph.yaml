@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: Refund
-    network: skale
+    network: mumbai
     source:
-      address: "0xfC93423589b932279FcD98889910134CE1FB3E0A"
+      address: "0x38Cf73babD175c4458B7b776Fb1860f472B238f7"
       abi: Refund
-      startBlock: 231787
+      startBlock: 28270682
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

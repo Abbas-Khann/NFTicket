@@ -1,16 +1,8 @@
 [
   {
     "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_time",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_ticket",
-        "type": "address"
-      }
+      { "internalType": "uint256", "name": "_time", "type": "uint256" },
+      { "internalType": "address", "name": "_ticket", "type": "address" }
     ],
     "stateMutability": "nonpayable",
     "type": "constructor"
@@ -20,31 +12,15 @@
     "name": "AWAY_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS",
     "type": "error"
   },
-  {
-    "inputs": [],
-    "name": "CONTRACT_IS_PAUSED",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "EVENT_HAS_ALREADY_STARTED",
-    "type": "error"
-  },
+  { "inputs": [], "name": "CONTRACT_IS_PAUSED", "type": "error" },
+  { "inputs": [], "name": "EVENT_HAS_ALREADY_STARTED", "type": "error" },
   {
     "inputs": [],
     "name": "HOME_TOKEN_ID_FOR_SEAT_LEVEL_OUT_OF_BOUNDS",
     "type": "error"
   },
-  {
-    "inputs": [],
-    "name": "INSUFFICIENT_FUNDS",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "TICKETS_MINTED_REACHED_MAX",
-    "type": "error"
-  },
+  { "inputs": [], "name": "INSUFFICIENT_FUNDS", "type": "error" },
+  { "inputs": [], "name": "TICKETS_MINTED_REACHED_MAX", "type": "error" },
   {
     "anonymous": false,
     "inputs": [
@@ -110,46 +86,22 @@
   {
     "inputs": [],
     "name": "areYouAllowedToTransfer",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "owner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_homeOrAway",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      }
+      { "internalType": "bool", "name": "_homeOrAway", "type": "bool" },
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "_from", "type": "address" }
     ],
     "name": "receiveTicketLevelEight",
     "outputs": [],
@@ -158,21 +110,9 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_homeOrAway",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      }
+      { "internalType": "bool", "name": "_homeOrAway", "type": "bool" },
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "_from", "type": "address" }
     ],
     "name": "receiveTicketLevelFive",
     "outputs": [],
@@ -181,21 +121,9 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_homeOrAway",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      }
+      { "internalType": "bool", "name": "_homeOrAway", "type": "bool" },
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "_from", "type": "address" }
     ],
     "name": "receiveTicketLevelFour",
     "outputs": [],
@@ -204,21 +132,9 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_homeOrAway",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      }
+      { "internalType": "bool", "name": "_homeOrAway", "type": "bool" },
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "_from", "type": "address" }
     ],
     "name": "receiveTicketLevelNine",
     "outputs": [],
@@ -227,21 +143,9 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_homeOrAway",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      }
+      { "internalType": "bool", "name": "_homeOrAway", "type": "bool" },
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "_from", "type": "address" }
     ],
     "name": "receiveTicketLevelOne",
     "outputs": [],
@@ -250,21 +154,9 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_homeOrAway",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      }
+      { "internalType": "bool", "name": "_homeOrAway", "type": "bool" },
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "_from", "type": "address" }
     ],
     "name": "receiveTicketLevelSeven",
     "outputs": [],
@@ -273,21 +165,9 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_homeOrAway",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      }
+      { "internalType": "bool", "name": "_homeOrAway", "type": "bool" },
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "_from", "type": "address" }
     ],
     "name": "receiveTicketLevelSix",
     "outputs": [],
@@ -296,21 +176,9 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_homeOrAway",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      }
+      { "internalType": "bool", "name": "_homeOrAway", "type": "bool" },
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "_from", "type": "address" }
     ],
     "name": "receiveTicketLevelTen",
     "outputs": [],
@@ -319,21 +187,9 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_homeOrAway",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      }
+      { "internalType": "bool", "name": "_homeOrAway", "type": "bool" },
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "_from", "type": "address" }
     ],
     "name": "receiveTicketLevelThree",
     "outputs": [],
@@ -342,21 +198,9 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_homeOrAway",
-        "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_from",
-        "type": "address"
-      }
+      { "internalType": "bool", "name": "_homeOrAway", "type": "bool" },
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+      { "internalType": "address", "name": "_from", "type": "address" }
     ],
     "name": "receiveTicketLevelTwo",
     "outputs": [],
@@ -371,13 +215,7 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "bool",
-        "name": "_value",
-        "type": "bool"
-      }
-    ],
+    "inputs": [{ "internalType": "bool", "name": "_value", "type": "bool" }],
     "name": "setPause",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -386,23 +224,13 @@
   {
     "inputs": [],
     "name": "ticket",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      {
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
+      { "internalType": "address", "name": "newOwner", "type": "address" }
     ],
     "name": "transferOwnership",
     "outputs": [],

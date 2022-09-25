@@ -22,7 +22,6 @@ const {address} = useAccount()
  async function fetchPurchases() {
    const resellArray = await resellQuery(FETCH_RESELL());
     const ticketArray = await ticketQuery(FETCH_TICKET());
-    console.log(ticketArray)
     const receiveRefundArray = await receiveRefundQuery(FETCH_RECEIVE_REFUND());
    const myArray: subgraphArrays["tickets"] = [];
    for (
@@ -134,7 +133,7 @@ useEffect(() => {
                 <h1 className="text-gray-200 z-10 text-2xl font-medium">
                 </h1>
               </div>
-              <img src={`https://eth-online.skalenodes.com/fs/hackathon-content-live-vega/bb7b095d779621cc4db92cdebd08f0a87fba1d40/17`} />
+              <img src={`https://eth-online.skalenodes.com/fs/hackathon-content-live-vega/bb7b095d779621cc4db92cdebd08f0a87fba1d40/1`} />
             </div>
             <div className="flex justify-around mb-2">
               <h2 className="text-[#818A96] font-medium">TokenID</h2>

@@ -7,20 +7,47 @@ import {
   lightTheme,
 } from "@rainbow-me/rainbowkit";
 import {
-  chain,
+  Chain,
   configureChains,
   createClient,
   WagmiConfig
 } from "wagmi";
 import { ToastContainer } from "react-toastify";
 import { SnackbarProvider } from "notistack";
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
+
+const mumbaiChain: Chain = {
+  id: 80001,
+  name: "Mumbai",
+  network: "mumbai",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Polygon",
+    symbol: "MATIC",
+  },
+  rpcUrls: {
+    default: "https://matic-mumbai.chainstacklabs.com",
+  },
+  blockExplorers: {
+    default: {
+      name: "Mumbai Explorer",
+      url: "https://mumbai.polygonscan.com/",
+    },
+  },
+  testnet: true,
+};
 
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai],
-  [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
+  [mumbaiChain],
+  [
+    jsonRpcProvider({
+      rpc: (chain) => {
+        if (chain.id !== mumbaiChain.id) return null;
+        return { http: chain.rpcUrls.default };
+      },
+    }),
+  ]
 );
 
 const { connectors } = getDefaultWallets({
