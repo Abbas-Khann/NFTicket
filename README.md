@@ -15,7 +15,7 @@ This has been going for 20+ years in the Football League. There are news of fans
 
 # 🥳 NFTicket
 
-NFTicket ticket is a solution to this problem by creating NFT versions of the ticket per game to create a decentalized control over how tickets are managed and distributed, while keeping public track of who buys each ticket.
+NFTicket is a solution to this problem by creating NFT versions of the ticket per game to create a decentalized control over how tickets are managed and distributed, while keeping public track of who buys each ticket.
 
 [![Hackathon-Video](https://media.giphy.com/media/FQMVedBETa0dVfCB7D/giphy.gif)](https://www.youtube.com/watch?v=MY-cvrlX3ao "Hackathon Video")
 
