@@ -1,4 +1,13 @@
-import TicketCard from "./TicketCard";
+import TicketCard from "./TicketCards/TicketCard";
+import TicketCardTwo from "./TicketCards/TicketCardTwo";
+import TicketCardThree from "./TicketCards/TicketCardThree";
+import TicketCardFour from "./TicketCards/TicketCardFour";
+import TicketCardFive from "./TicketCards/TicketCardFive";
+import TicketCardSix from "./TicketCards/TicketCardSix";
+import TicketCardSeven from "./TicketCards/TicketCardSeven";
+import TicketCardEight from "./TicketCards/TicketCardEight";
+import TicketCardNine from "./TicketCards/TicketCardNine";
+import TicketCardTen from "./TicketCards/TicketCardTen";
 import { GameInfoProps } from "../interfaces/Countries";
 
 const GameInfo = ({ country }: { country: GameInfoProps }): JSX.Element => {
@@ -10,8 +19,12 @@ const GameInfo = ({ country }: { country: GameInfoProps }): JSX.Element => {
             <div className="absolute top-1/2 transform -translate-y-1/2  sm:text-3xl text-lg font-medium ">
               {country.gameDate}
             </div>
-            <h1 className="sm:text-3xl text-lg">{country.name1}</h1>
-            <h1 className="sm:text-3xl text-lg">{country.name2}</h1>
+            <h1 className="sm:text-3xl text-lg mr-20 sm:mr-0">
+              {country.name1}
+            </h1>
+            <h1 className="sm:text-3xl text-lg ml-20 sm:mr-0">
+              {country.name2}
+            </h1>
           </div>
           <div className="flex mx-auto justify-around py-16 relative ">
             <div className="absolute top-1/2 transform -translate-y-1/2   font-medium">
@@ -35,11 +48,15 @@ const GameInfo = ({ country }: { country: GameInfoProps }): JSX.Element => {
       </div>
       <div className="mt-20 flex justify-around  flex-wrap sm:px-16 px-4">
         <TicketCard country1={country.name1} country2={country.name2} />
-        <TicketCard country1={country.name1} country2={country.name2} />
-        <TicketCard country1={country.name1} country2={country.name2} />
-        <TicketCard country1={country.name1} country2={country.name2} />
-        <TicketCard country1={country.name1} country2={country.name2} />
-        <TicketCard country1={country.name1} country2={country.name2} />
+        <TicketCardTwo country1={country.name1} country2={country.name2} />
+        <TicketCardThree country1={country.name1} country2={country.name2} />
+        <TicketCardFour country1={country.name1} country2={country.name2} />
+        <TicketCardFive country1={country.name1} country2={country.name2} />
+        <TicketCardSix country1={country.name1} country2={country.name2} />
+        <TicketCardSeven country1={country.name1} country2={country.name2} />
+        <TicketCardEight country1={country.name1} country2={country.name2} />
+        <TicketCardNine country1={country.name1} country2={country.name2} />
+        <TicketCardTen country1={country.name1} country2={country.name2} />
       </div>
     </div>
   );
