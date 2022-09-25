@@ -100,6 +100,11 @@ const Navbar = () => {
             Resell
           </button>
         </Link>
+        <Link href="/https://www.thepixelcup.com/">
+          <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
+            Partners
+          </button>
+        </Link>
       </ul>
       {/* ------------ Input component rendered here -------------- */}
       <ConnectButton />
@@ -159,6 +164,11 @@ const Navbar = () => {
             <Link href="/Resell">
               <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
                 Resell
+              </button>
+            </Link>
+            <Link href="/https://www.thepixelcup.com/">
+              <button className="cursor-pointer hover:border-b-2 hover:border-black transition-all text-skin-muted dark:text-skin-darkMuted">
+                Partners
               </button>
             </Link>
           </ul>
