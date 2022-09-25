@@ -19,8 +19,12 @@ const GameInfo = ({ country }: { country: GameInfoProps }): JSX.Element => {
             <div className="absolute top-1/2 transform -translate-y-1/2  sm:text-3xl text-lg font-medium ">
               {country.gameDate}
             </div>
-            <h1 className="sm:text-3xl text-lg">{country.name1}</h1>
-            <h1 className="sm:text-3xl text-lg">{country.name2}</h1>
+            <h1 className="sm:text-3xl text-lg mr-20 sm:mr-0">
+              {country.name1}
+            </h1>
+            <h1 className="sm:text-3xl text-lg ml-20 sm:mr-0">
+              {country.name2}
+            </h1>
           </div>
           <div className="flex mx-auto justify-around py-16 relative ">
             <div className="absolute top-1/2 transform -translate-y-1/2   font-medium">
@@ -46,7 +50,7 @@ const GameInfo = ({ country }: { country: GameInfoProps }): JSX.Element => {
         <TicketCard country1={country.name1} country2={country.name2} />
         <TicketCardTwo country1={country.name1} country2={country.name2} />
         <TicketCardThree country1={country.name1} country2={country.name2} />
-        <TicketCardFour country1={country.name1} country2={country.name2} />  
+        <TicketCardFour country1={country.name1} country2={country.name2} />
         <TicketCardFive country1={country.name1} country2={country.name2} />
         <TicketCardSix country1={country.name1} country2={country.name2} />
         <TicketCardSeven country1={country.name1} country2={country.name2} />
