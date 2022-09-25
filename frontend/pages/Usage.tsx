@@ -42,7 +42,7 @@ const Usage = () => {
                 <div className='w-10/12 sm:w-6/12 flex flex-col justify-center lg:pl-32'>
                     <h2 className='text-3xl pb-8'>Purchase a Ticket</h2>
                     <p className='text-xl'>
-                        Head over to the tickets page and <br />Choose the game you want to watch<br /> Click on Match details and purchase a ticket in the row you want
+                        Head over to the tickets page and <br />Choose the game you want to watch<br /> Click on Match details and purchase a ticket in the row you want, Now you should be able to see the ticket in your profile page
                     </p>
                 </div>
             </div>
