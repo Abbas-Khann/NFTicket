@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const refundTicketLevelOne = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ReceiveRefundContract = new Contract(
     RECEIVE_REFUND_ADDRESS,
@@ -52,7 +52,7 @@ export const refundTicketLevelOne = async (
 export const refundTicketLevelTwo = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ReceiveRefundContract = new Contract(
     RECEIVE_REFUND_ADDRESS,
@@ -97,7 +97,7 @@ export const refundTicketLevelTwo = async (
 export const refundTicketLevelThree = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ReceiveRefundContract = new Contract(
     RECEIVE_REFUND_ADDRESS,
@@ -142,7 +142,7 @@ export const refundTicketLevelThree = async (
 export const refundTicketLevelFour = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ReceiveRefundContract = new Contract(
     RECEIVE_REFUND_ADDRESS,
@@ -187,7 +187,7 @@ export const refundTicketLevelFour = async (
 export const refundTicketLevelFive = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ReceiveRefundContract = new Contract(
     RECEIVE_REFUND_ADDRESS,
@@ -232,7 +232,7 @@ export const refundTicketLevelFive = async (
 export const refundTicketLevelSix = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ReceiveRefundContract = new Contract(
     RECEIVE_REFUND_ADDRESS,
@@ -277,7 +277,7 @@ export const refundTicketLevelSix = async (
 export const refundTicketLevelSeven = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ReceiveRefundContract = new Contract(
     RECEIVE_REFUND_ADDRESS,
@@ -322,7 +322,7 @@ export const refundTicketLevelSeven = async (
 export const refundTicketLevelEight = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ReceiveRefundContract = new Contract(
     RECEIVE_REFUND_ADDRESS,
@@ -367,7 +367,7 @@ export const refundTicketLevelEight = async (
 export const refundTicketLevelNine = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ReceiveRefundContract = new Contract(
     RECEIVE_REFUND_ADDRESS,
@@ -412,7 +412,7 @@ export const refundTicketLevelNine = async (
 export const refundTicketLevelTen = async (
   homeOrAway: boolean,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ReceiveRefundContract = new Contract(
     RECEIVE_REFUND_ADDRESS,
@@ -456,7 +456,7 @@ export const refundTicketLevelTen = async (
 
 export const toggleReceiveRefund = async (
   refundId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined,
+  signer: any,
   homeOrAway: boolean
 ) => {
   if (parseInt(refundId) > 0 && parseInt(refundId) < 201) {

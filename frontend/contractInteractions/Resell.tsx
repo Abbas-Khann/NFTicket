@@ -1,4 +1,4 @@
-import { ethers, Contract } from "ethers";
+import { ethers, Contract, Signer } from "ethers";
 import { RESELL_ABI, RESELL_ADDRESS } from "../contractInfo/Resell";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,7 +7,7 @@ export const receiveTicketLevelOne = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any 
 ): Promise<void> => {
   const ResellContract = new Contract(RESELL_ADDRESS, RESELL_ABI, signer);
   try {
@@ -50,7 +50,7 @@ export const receiveTicketLevelTwo = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ResellContract = new Contract(RESELL_ADDRESS, RESELL_ABI, signer);
   try {
@@ -93,7 +93,7 @@ export const receiveTicketLevelThree = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ResellContract = new Contract(RESELL_ADDRESS, RESELL_ABI, signer);
   try {
@@ -136,7 +136,7 @@ export const receiveTicketLevelFour = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ResellContract = new Contract(RESELL_ADDRESS, RESELL_ABI, signer);
   try {
@@ -179,7 +179,7 @@ export const receiveTicketLevelFive = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ResellContract = new Contract(RESELL_ADDRESS, RESELL_ABI, signer);
   try {
@@ -222,7 +222,7 @@ export const receiveTicketLevelSix = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ResellContract = new Contract(RESELL_ADDRESS, RESELL_ABI, signer);
   try {
@@ -265,7 +265,7 @@ export const receiveTicketLevelSeven = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ResellContract = new Contract(RESELL_ADDRESS, RESELL_ABI, signer);
   try {
@@ -308,11 +308,11 @@ export const receiveTicketLevelEight = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ResellContract = new Contract(RESELL_ADDRESS, RESELL_ABI, signer);
   try {
-    const tx = await ResellContract.receiveTicketLevelEight(
+   const tx = await ResellContract.receiveTicketLevelEight(
       homeOrAway,
       tokenId,
       from,
@@ -351,7 +351,7 @@ export const receiveTicketLevelNine = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ResellContract = new Contract(RESELL_ADDRESS, RESELL_ABI, signer);
   try {
@@ -394,7 +394,7 @@ export const receiveTicketLevelTen = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const ResellContract = new Contract(RESELL_ADDRESS, RESELL_ABI, signer);
   try {
@@ -437,7 +437,7 @@ export const toggleResell = async (
   homeOrAway: boolean,
   tokenId: string,
   from: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ) => {
   if (parseInt(tokenId) > 0 && parseInt(tokenId) < 201) {
     receiveTicketLevelOne(homeOrAway, tokenId, from, signer);

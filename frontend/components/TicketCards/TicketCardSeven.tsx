@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Match from "../../public/img/blanknft.png";
-import SkaleLogo from "../../public/img/skale-logo.png";
+import PolygonLogo from "../../public/img/polygon-logo.png";
 import { useEffect, useState } from "react";
 import { buySeatLevelSeven } from "../../contractInteractions/Ticket";
 import { useSigner, useProvider } from "wagmi";
@@ -53,12 +53,12 @@ const TicketCard = ({
         <h2 className="text-black">{ticketsMinted}/200</h2>
         <h2 className="text-black flex items-center ">
           <Image
-            src={SkaleLogo}
+            src={PolygonLogo}
             width={20}
             height={20}
             className="border-b-2 border-black text-2xl pb-1"
           />
-          <p className="ml-1">0.25 SFUEL</p>
+          <p className="ml-1">0.25 MATIC</p>
         </h2>
       </div>
       <div className="flex flex-col justify-center items-center">

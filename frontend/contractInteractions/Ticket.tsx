@@ -1,11 +1,12 @@
 import { ethers, Contract } from "ethers";
+import { Provider } from "@wagmi/core";
 import { TICKET_ABI, TICKET_ADDRESS } from "../contractInfo/Ticket";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const buySeatLevelOne = async (
   homeOrAway: boolean,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
@@ -41,7 +42,7 @@ export const buySeatLevelOne = async (
 
 export const buySeatLevelTwo = async (
   homeOrAway: boolean,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
@@ -77,7 +78,7 @@ export const buySeatLevelTwo = async (
 
 export const buySeatLevelThree = async (
   homeOrAway: boolean,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
@@ -113,7 +114,7 @@ export const buySeatLevelThree = async (
 
 export const buySeatLevelFour = async (
   homeOrAway: boolean,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
@@ -149,7 +150,7 @@ export const buySeatLevelFour = async (
 
 export const buySeatLevelFive = async (
   homeOrAway: boolean,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
@@ -185,7 +186,7 @@ export const buySeatLevelFive = async (
 
 export const buySeatLevelSix = async (
   homeOrAway: boolean,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
@@ -221,7 +222,7 @@ export const buySeatLevelSix = async (
 
 export const buySeatLevelSeven = async (
   homeOrAway: boolean,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
@@ -257,7 +258,7 @@ export const buySeatLevelSeven = async (
 
 export const buySeatLevelEight = async (
   homeOrAway: boolean,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
@@ -293,7 +294,7 @@ export const buySeatLevelEight = async (
 
 export const buySeatLevelNine = async (
   homeOrAway: boolean,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
@@ -329,7 +330,7 @@ export const buySeatLevelNine = async (
 
 export const buySeatLevelTen = async (
   homeOrAway: boolean,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {
@@ -366,7 +367,7 @@ export const buySeatLevelTen = async (
 export const approve = async (
   to: string,
   tokenId: string,
-  signer: FetchSignerResult<ethers.Signer> | undefined
+  signer: any
 ): Promise<void> => {
   const TicketContract = new Contract(TICKET_ADDRESS, TICKET_ABI, signer);
   try {

@@ -55,7 +55,7 @@ export function FETCH_RECEIVE_REFUND() {
 export async function ticketQuery(query: any) {
   try {
     const SUBGRAPH_URL =
-      "https://api.thegraph.com/subgraphs/name/ljcutts/buyticketv2";
+      "https://api.thegraph.com/subgraphs/name/ljcutts/buyticket";
     const response = await axios.post(SUBGRAPH_URL, {
       query,
     });
@@ -72,7 +72,7 @@ export async function ticketQuery(query: any) {
 export async function resellQuery(query: any) {
   try {
     const SUBGRAPH_URL =
-      "https://api.thegraph.com/subgraphs/name/ljcutts/resellv1";
+      "https://api.thegraph.com/subgraphs/name/ljcutts/resell";
     const response = await axios.post(SUBGRAPH_URL, {
       query,
     });
@@ -89,7 +89,7 @@ export async function resellQuery(query: any) {
 export async function refundQuery(query: any) {
   try {
     const SUBGRAPH_URL =
-      "https://api.thegraph.com/subgraphs/name/ljcutts/refundv1";
+      "https://api.thegraph.com/subgraphs/name/ljcutts/refund";
     const response = await axios.post(SUBGRAPH_URL, {
       query,
     });
@@ -106,7 +106,7 @@ export async function refundQuery(query: any) {
 export async function receiveRefundQuery(query: any) {
   try {
     const SUBGRAPH_URL =
-      "https://api.thegraph.com/subgraphs/name/ljcutts/receiverefundv1";
+      "https://api.thegraph.com/subgraphs/name/ljcutts/receiverefund";
     const response = await axios.post(SUBGRAPH_URL, {
       query,
     });

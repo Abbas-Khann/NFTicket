@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import heroImage from "../public/img/hero.png";
 
-
 const Hero = () => {
   return (
     <section className="px-2 py-20 bg-gradient-to-r from-[#9B021EDE] via-[#800028] to-[#3B0113F7] text-white">
@@ -18,11 +17,9 @@ const Hero = () => {
           </p>
           <div>
             <Link href="/Usage">
-            <button
-              className="border-full py-2 px-6 rounded-full border-2  hover:bg-[#800028]"
-              >
-              How it works
-            </button>
+              <button className="border-full py-2 px-6 rounded-full border-2  hover:bg-[#800028]">
+                How it works
+              </button>
             </Link>
           </div>
         </div>
@@ -33,6 +30,5 @@ const Hero = () => {
     </section>
   );
 };
-
 
 export default Hero;

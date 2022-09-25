@@ -8,54 +8,47 @@ import {
 } from "@rainbow-me/rainbowkit";
 import {
   Chain,
-  chain,
   configureChains,
   createClient,
-  WagmiConfig,
+  WagmiConfig
 } from "wagmi";
-
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
 import { ToastContainer } from "react-toastify";
 import { SnackbarProvider } from "notistack";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
-const scaleChain: Chain = {
-  id: 256236330,
-  name: "Skale-Live-Vega-Chain",
-  network: "skale",
+
+const mumbaiChain: Chain = {
+  id: 80001,
+  name: "Mumbai",
+  network: "mumbai",
   nativeCurrency: {
     decimals: 18,
-    name: "Skale Fuel",
-    symbol: "sFUEL",
+    name: "Polygon",
+    symbol: "MATIC",
   },
   rpcUrls: {
-    default: "https://eth-online.skalenodes.com/v1/hackathon-content-live-vega",
+    default: "https://matic-mumbai.chainstacklabs.com",
   },
   blockExplorers: {
     default: {
-      name: "Skale Explorer",
-      url: "https://hackathon-content-live-vega.explorer.eth-online.skalenodes.com/",
+      name: "Mumbai Explorer",
+      url: "https://mumbai.polygonscan.com/",
     },
   },
   testnet: true,
 };
 
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai],
-  [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
+  [mumbaiChain],
+  [
+    jsonRpcProvider({
+      rpc: (chain) => {
+        if (chain.id !== mumbaiChain.id) return null;
+        return { http: chain.rpcUrls.default };
+      },
+    }),
+  ]
 );
-
-// const { chains, provider } = configureChains(
-//   [scaleChain],
-//   [
-//     jsonRpcProvider({
-//       rpc: (chain) => {
-//         if (chain.id !== scaleChain.id) return null;
-//         return { http: chain.rpcUrls.default };
-//       },
-//     }),
-//   ]
-// );
 
 const { connectors } = getDefaultWallets({
   appName: "NFTicket",

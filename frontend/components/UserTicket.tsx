@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Skale from "../public/img/skale-logo.png"
+import Polygon from "../public/img/polygon-logo.png"
 import Image from "next/image";
 import { useAccount } from "wagmi";
 import {
@@ -143,12 +143,12 @@ useEffect(() => {
               <h2 className="text-black pr-5">{u.id}</h2>
               <h2 className="text-black flex items-center ">
                 <Image
-                  src={Skale}
+                  src={Polygon}
                   width={20}
                   height={20}
                   className="border-b-2 border-black text-2xl"
                 />
-                <p className="ml-1">{ethers.utils.formatEther(u.Amount)} SFUEL</p>
+                <p className="ml-1">{ethers.utils.formatEther(u.Amount)} MATIC</p>
               </h2>
             </div>
             <div className="flex flex-col justify-center items-center">
