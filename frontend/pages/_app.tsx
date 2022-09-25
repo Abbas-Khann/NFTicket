@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import Head from "next/head";
 import type { AppProps } from "next/app";
 import "@rainbow-me/rainbowkit/styles.css";
 import {
@@ -63,6 +64,10 @@ const wagmiClient = createClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
+    <>
+  <Head>
+    <link rel="shortcut icon" href="/valist.ico" />
+  </Head>
     <SnackbarProvider autoHideDuration={2000}>
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider
@@ -74,7 +79,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             borderRadius: "small",
             fontStack: "rounded",
           })}
-        >
+          >
           <Component {...pageProps} />
           <ToastContainer
             theme="dark"
@@ -87,10 +92,11 @@ function MyApp({ Component, pageProps }: AppProps) {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-          />
+            />
         </RainbowKitProvider>
       </WagmiConfig>
     </SnackbarProvider>
+    </>
   );
 }
 

@@ -20,8 +20,8 @@ const Usage = () => {
             <h2 className="text-3xl pb-8">Connect your Wallet</h2>
             <p className="text-xl">
               First of all you will need to connect your <br />
-              wallet and select the Scale network <br /> Since this dApp is
-              deployed on Scale
+              wallet and select the Mumbai network <br /> Since this dApp is
+              deployed on Mumbai
             </p>
           </div>
           <div className="flex flex-col items-center justify-center w-6/12">
