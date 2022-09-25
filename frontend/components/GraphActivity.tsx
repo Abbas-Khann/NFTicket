@@ -115,7 +115,7 @@ const GraphActivity = () => {
                 <td className="py-4 px-8">{t?.SeatLevel}</td>
                 <td className="py-4 px-6">Buy</td>
                 <td className="py-4 px-6">
-                  {ethers.utils.formatEther(t?.Amount)} SFUEL
+                  {ethers.utils.formatEther(t?.Amount)} MATIC
                 </td>
               </tr>
             );
@@ -138,7 +138,7 @@ const GraphActivity = () => {
                 <td className="py-4 px-8">{s?.SeatLevel}</td>
                 <td className="py-4 px-6">Resell</td>
                 <td className="py-4 px-6">
-                  {ethers.utils.formatEther(s?.Amount)} SFUEL
+                  {ethers.utils.formatEther(s?.Amount)} MATIC
                 </td>
               </tr>
             );
@@ -185,7 +185,7 @@ const GraphActivity = () => {
                 <td className="py-4 px-6">{t?.HomeOrAway.toString()}</td>
                 <td className="py-4 px-8">{t?.SeatLevel}</td>
                 <td className="py-4 px-6">
-                  {ethers.utils.formatEther(t?.Amount)} SFUEL
+                  {ethers.utils.formatEther(t?.Amount)} MATIC
                 </td>
               </tr>
             );
